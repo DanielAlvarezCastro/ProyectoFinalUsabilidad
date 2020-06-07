@@ -1,0 +1,25 @@
+
+# Git meta files
+!.gitignore
+!.gitattributes
+!README.md
+
+# Ignore directories/files
+/ShooterUsabilidad/.vs
+/ShooterUsabilidad/Builds/*
+/ShooterUsabilidad/Library
+/ShooterUsabilidad/Logs
+/ShooterUsabilidad/obj
+/ShooterUsabilidad/Packages
+/ShooterUsabilidad/Assembly-CSharp.csproj
+/ShooterUsabilidad/License
+/ShooterUsabilidad/ShooterUsabilidad.sln
+/ShooterUsabilidad/Shooter.sln
+/ShooterUsabilidad/Unity.Analytics.DataPrivacy.csproj
+/ShooterUsabilidad/Unity.CollabProxy.Editor.csproj
+/ShooterUsabilidad/Unity.TextMeshPro.csproj
+/ShooterUsabilidad/Unity.TextMeshPro.Editor.csproj
+/ShooterUsabilidad/Temp
+
+# Any modules kept in their own git repo.
+Assets/_modules/fps/
