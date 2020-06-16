@@ -71,6 +71,7 @@ public class Player : MonoBehaviour
             rb.AddForce(Vector3.up*jumpForce);
         }
 
+        moveVec = Quaternion.Euler(0, -transform.eulerAngles.y, 0) * moveVec;
         //Mueve al jugador
         transform.Translate(moveVec * speed * Time.deltaTime);
     }

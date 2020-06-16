@@ -397,8 +397,11 @@ MonoBehaviour:
   damagePerBullet: 10
   bulletsPerShot: 1
   magazine: 10
-  desviation: 3
-  apuntadoDesviation: 1.5
+  desviation: 6
+  apuntadoDesviation: 5
+  maxRecoilTime: 1
+  recoilTime: 0.5
+  stabilityMultiplicator: 1.3
   sensivityApuntado: 0.5
   aimingMult: 0.4
   actualDesviation: 0
