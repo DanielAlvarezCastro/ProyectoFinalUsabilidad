@@ -408,6 +408,9 @@ MonoBehaviour:
   magazine: 6
   desviation: 7
   apuntadoDesviation: 4
+  maxRecoilTime: 1
+  recoilTime: 1
+  stabilityMultiplicator: 2
   sensivityApuntado: 0.5
   aimingMult: 0.4
   actualDesviation: 0

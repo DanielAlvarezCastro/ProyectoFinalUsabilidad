@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class Weapon : MonoBehaviour
 {
@@ -11,12 +12,25 @@ public class Weapon : MonoBehaviour
     //Variables de arma
     public bool automatic = false;
     public bool hitScan = true;
+
+    [Header("Values")]
     public float fireRate = 0.25f;
     public float damagePerBullet = 10;
     public int bulletsPerShot = 1;
     public int magazine = 10;
     public float desviation = 30;
     public float apuntadoDesviation = 10;
+
+    //Desviacion nuevo
+    [Header("Recoil")]
+    public bool usesRecoil = true;
+    public float maxRecoilTime = 2;
+    public float recoilTime = 0.3f;
+    public float stabilityMultiplicator = 1;
+    float actualRecoil = 0;
+
+    //Apuntado
+    [Header("Apuntado")]
     public float sensivityApuntado = 0.5f;
     public float aimingMult = 0.25f;
 
@@ -49,10 +63,17 @@ public class Weapon : MonoBehaviour
     string shootName = "";
     string apuntadoShootName = "";
 
+    Slider recoilSlider;
+
     // Start is called before the first frame update
     void Start()
     {
         startWeapon();
+
+        //Caca
+        recoilSlider = GameObject.FindObjectOfType<Slider>();
+        if(recoilSlider !=null)
+            recoilSlider.maxValue = maxRecoilTime;
     }
 
     //Coge y establece variables necesarias
@@ -70,12 +91,21 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        recoil();
         reload();
         if (reloading) return;
 
         //Si no está recargando, puedes apuntar y disparar
         shootInput();
         aim();
+    }
+    void recoil()
+    {
+        if (actualRecoil > 0) actualRecoil -= Time.deltaTime*stabilityMultiplicator;
+        else actualRecoil = 0;
+
+        if(recoilSlider != null)
+            recoilSlider.value = actualRecoil;
     }
     void reload()
     {
@@ -185,6 +215,7 @@ public class Weapon : MonoBehaviour
 
             //Sonido y efecto de disparo
             shootEffects();
+
         }
     }
     IEnumerator ShowCurrentClipLength()
@@ -216,7 +247,10 @@ public class Weapon : MonoBehaviour
             //Genera una dirección aleatoria entre el radio de desviación actual
             //Esto lo vi en internet no preguntéis
             forwardVector = Vector3.forward;
-            deviation = Random.Range(0f, actualDesviation);
+            if(usesRecoil)
+                deviation = Random.Range(0f, actualDesviation*(actualRecoil/maxRecoilTime));
+            else
+                deviation = Random.Range(0f, actualDesviation);
             angle = Random.Range(0f, 360f);
             forwardVector = Quaternion.AngleAxis(deviation, Vector3.up) * forwardVector;
             forwardVector = Quaternion.AngleAxis(angle, Vector3.forward) * forwardVector;
@@ -244,6 +278,10 @@ public class Weapon : MonoBehaviour
 
             //Por último, instanciamos la bala física (sólo visual en caso de hitscan)
             bulletInst();
+
+            //Recoil
+            actualRecoil += recoilTime;
+            if (actualRecoil > maxRecoilTime) actualRecoil = maxRecoilTime;
         }
     }
 

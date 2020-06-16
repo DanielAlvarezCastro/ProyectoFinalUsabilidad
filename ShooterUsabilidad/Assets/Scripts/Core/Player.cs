@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
         getInitWeapon();
         int randChild = Random.Range(0, auxPoint.transform.childCount);
         transform.position = auxPoint.transform.GetChild(randChild).transform.position;
-        transform.rotation = auxPoint.transform.GetChild(randChild).transform.rotation;
+        arm.transform.rotation = auxPoint.transform.GetChild(randChild).transform.rotation;
     }
 
     //Movimiento simple y normalizado en 8 direcciones
@@ -71,7 +71,9 @@ public class Player : MonoBehaviour
             rb.AddForce(Vector3.up*jumpForce);
         }
 
+        moveVec = Quaternion.Euler(0, -transform.eulerAngles.y, 0) * moveVec;
         //Mueve al jugador
+        moveVec = Quaternion.Euler(0, -transform.eulerAngles.y, 0) * moveVec;
         transform.Translate(moveVec * speed * Time.deltaTime);
     }
 
