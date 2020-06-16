@@ -39,8 +39,10 @@ public class Player : MonoBehaviour
     void spawn()
     {
         GameObject auxPoint = GameObject.Find("SpawnPoints").gameObject;
-        transform.position = auxPoint.transform.GetChild(Random.Range(0, auxPoint.transform.childCount)).transform.position;
         getInitWeapon();
+        int randChild = Random.Range(0, auxPoint.transform.childCount);
+        transform.position = auxPoint.transform.GetChild(randChild).transform.position;
+        transform.rotation = auxPoint.transform.GetChild(randChild).transform.rotation;
     }
 
     //Movimiento simple y normalizado en 8 direcciones
