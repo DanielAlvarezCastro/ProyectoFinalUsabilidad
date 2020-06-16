@@ -245,7 +245,7 @@ public class Weapon : MonoBehaviour
         for (int x = 0; x < bulletsPerShot; x++)
         {
             //Genera una dirección aleatoria entre el radio de desviación actual
-            //Esto lo vi en internet no preguntéis
+            //Esta desviacion depende del recoil actual si está activado
             forwardVector = Vector3.forward;
             if(usesRecoil)
                 deviation = Random.Range(0f, actualDesviation*(actualRecoil/maxRecoilTime));
