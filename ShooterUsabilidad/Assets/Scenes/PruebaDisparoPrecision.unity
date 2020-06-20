@@ -1404,10 +1404,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1162759941}
   - component: {fileID: 1162759940}
-  - component: {fileID: 1162759939}
   - component: {fileID: 1162759942}
+  - component: {fileID: 1162759939}
   m_Layer: 0
-  m_Name: ReflexTest
+  m_Name: PrecisionShootingTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1422,12 +1422,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1162759938}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2aa0b84cab3457b4f9c528621e01755f, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ec4f6855224d4d478f3e47962dcdf91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minTimeInterval: 2
-  maxTimeInterval: 4
-  maxNumObj: 4
+  testDuration: 12
+  objetiveTime: 3
 --- !u!114 &1162759940
 MonoBehaviour:
   m_ObjectHideFlags: 0
