@@ -23,48 +23,68 @@ public class ReflexTest : MonoBehaviour
     //Cuenta las pulsaciones que son erroneas
     private int failClick = 0;
 
+    //Informa de cuando ha empezado la prueba
+    private ClickToStart startEvent;
+
+    //Para controlar cuando aparece el primer objetivo
+    private bool firstSpawn = false;
+
     // Start is called before the first frame update
     void Start()
     {
         //Guardamos referencia al script para poder hacer spawn cuando se necesite
         manageObjetives = GetComponent<ManageObjetives>();
+        startEvent = GetComponent<ClickToStart>();
 
-        objetiveActive = true;
-
-        //Se spawnea la primera esfera
+        //Se crea el primer objetivo y se desactiva para usarlo luego
         actualObjetive = manageObjetives.Spawn();
+        actualObjetive.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
-    {
-        //Mientras queden objetivos por salir
-        if(actualNumObj < maxNumObj)
+    {   
+        //Cuando la prueba ha empezado:
+        if(startEvent.IsTestStarted())
         {
-            //Si hay objetivo en pantalla y se pulsa
-            if (objetiveActive & (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)))
+            if(!firstSpawn)
             {
-                actualNumObj++;
-                actualObjetive.SetActive(false);
-
-                if (actualNumObj < maxNumObj) { 
-                    objetiveActive = false;
-                    RandomTimeSpawn();
-             
-                    //Para comprobar la puntuacion
-                    Debug.Log("Se han acertado: " + actualNumObj);
-                }
-                //Cuando se han destruido todos los objetivos
-                else
-                {
-                    Debug.Log("La prueba ha terminado.");
-                }
+                //Se spawnea la primera esfera
+                RandomTimeSpawn();
+                firstSpawn = true;
+                objetiveActive = true;
             }
-            //Si el probador pulsa pero no hay objetivo se le penaliza
-            else if(!objetiveActive && (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)))
+
+            //Mientras queden objetivos por salir
+            if (actualNumObj < maxNumObj)
             {
-                failClick++;
-                Debug.Log("Numero de fallos: " + failClick);
+                //Si hay objetivo en pantalla y se pulsa
+                if (objetiveActive & (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)))
+                {
+                    actualNumObj++;
+                    actualObjetive.SetActive(false);
+
+                    if (actualNumObj < maxNumObj)
+                    {
+                        objetiveActive = false;
+                        RandomTimeSpawn();
+
+                        //Para comprobar la puntuacion
+                        Debug.Log("Se han acertado: " + actualNumObj);
+                    }
+                    //Cuando se han destruido todos los objetivos
+                    else
+                    {
+                        startEvent.endTestText();
+                        Debug.Log("La prueba ha terminado.");
+                    }
+                }
+                //Si el probador pulsa pero no hay objetivo se le penaliza
+                else if (!objetiveActive && (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)))
+                {
+                    failClick++;
+                    Debug.Log("Numero de fallos: " + failClick);
+                }
             }
         }
     }

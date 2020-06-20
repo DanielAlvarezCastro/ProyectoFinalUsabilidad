@@ -92,7 +92,7 @@ public class Weapon : MonoBehaviour
     void Update()
     {
         recoil();
-        reload();
+        //reload();
         if (reloading) return;
 
         //Si no está recargando, puedes apuntar y disparar
