@@ -11,8 +11,9 @@ public class MainMenuManager : MonoBehaviour
     public GameObject nameSelection;
     public TMP_InputField nameInput;
     string selectedName;
-    int selectedTest;
+    string selectedTest;
     int selectedWeapon;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,9 +41,9 @@ public class MainMenuManager : MonoBehaviour
         weaponSelection.SetActive(false);
         nameSelection.SetActive(true);
     }
-    public void SelectTest(int num)
+    public void SelectTest(string testName)
     {
-        selectedTest = num;
+        selectedTest = testName;
         ShowWeaponSelection();
     }
     public void SelectWeapon(int num)
@@ -55,7 +56,19 @@ public class MainMenuManager : MonoBehaviour
         if(nameInput.text=="")
             nameInput.text = "ANON";
         selectedName = nameInput.text;
-        SceneManager.LoadScene(selectedTest);
+
+        GameSessionManager.Instance.SetPlayerName(selectedName);
+        GameSessionManager.Instance.SetSelectedTest(selectedTest);
+        GameSessionManager.Instance.SetSelectedWeapon(selectedWeapon);
+        if (selectedTest == "PruebaCompleta")
+        {
+            GameSessionManager.Instance.SetCompleteTest(true);
+            SceneManager.LoadScene("PruebaTracking");
+        }
+        else
+        {
+            SceneManager.LoadScene(selectedTest);
+        }
     }
     public void QuitGame()
     {

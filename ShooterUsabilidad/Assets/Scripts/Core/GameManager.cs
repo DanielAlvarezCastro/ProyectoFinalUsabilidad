@@ -16,8 +16,15 @@ public class GameManager : MonoBehaviour
     {
         if (GameManager.instance != null) Destroy(gameObject);
         else instance = this;
+        if (GameSessionManager.Instance != null)
+        {
+            LoadWeapon();
+        }
     }
-
+    void LoadWeapon()
+    {
+        initWeapon = GameSessionManager.Instance.GetSelectedWeapon();
+    }
     // Update is called once per frame
     void Update()
     {

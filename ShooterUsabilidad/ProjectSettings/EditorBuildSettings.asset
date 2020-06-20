@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: f753d95b241d3364584bed6e53faa106
   - enabled: 1
-    path: Assets/Scenes/Shooter.unity
-    guid: bb163f960b7937043893fbb404ce926c
+    path: Assets/Scenes/PruebaTracking.unity
+    guid: a4fc9c3bf3f2e4347996acd1c27a4bba
+  - enabled: 1
+    path: Assets/Scenes/PruebaReflejos.unity
+    guid: 5ec67cc4b96015141aaf3d92223de976
   m_configObjects: {}
