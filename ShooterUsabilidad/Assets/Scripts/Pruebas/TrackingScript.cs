@@ -11,9 +11,11 @@ public class TrackingScript : MonoBehaviour
     bool started = false;
     public float startTime = 3;
     float actualStartTime = 0;
+    TrackingTest tT;
     // Start is called before the first frame update
     void Start()
     {
+        tT = GameObject.FindObjectOfType<TrackingTest>();
         actualStartTime = startTime;
         cameraObj = GetComponentInChildren<Camera>();
     }
@@ -38,17 +40,21 @@ public class TrackingScript : MonoBehaviour
             {
                 dentro = true;
                 print("mando evento dentro");
+                tT.enterRay();
             }
             else if (dentro && !hit.collider.CompareTag("Enemy"))
             {
                 dentro = false;
                 print("mando evento fuera");
+                tT.exitRay();
                 actualStartTime = startTime;
+                tT.startTimeTest(startTime, actualStartTime);
             }
             //Para empezar el test
             if(!started && dentro && actualStartTime > 0)
             {
                 actualStartTime -= Time.deltaTime;
+                tT.startTimeTest(startTime, actualStartTime);
             }
             else if(!started && actualStartTime <= 0)
             {
@@ -59,8 +65,9 @@ public class TrackingScript : MonoBehaviour
         else if(dentro)
         {
             dentro = false;
-            print("mando evento fuera");
+            tT.exitRay();
             actualStartTime = startTime;
+            tT.startTimeTest(startTime, actualStartTime);
         }
     }
 }

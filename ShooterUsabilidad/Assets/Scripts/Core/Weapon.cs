@@ -92,12 +92,21 @@ public class Weapon : MonoBehaviour
     void Update()
     {
         recoil();
+        speedAux();
         //reload();
-        if (reloading) return;
+        //if (reloading) return;
 
         //Si no está recargando, puedes apuntar y disparar
         shootInput();
         aim();
+    }
+    void speedAux()
+    {
+        //Si ha acabado la animación de recargar
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Static"))
+        {
+            anim.speed = 1;
+        }
     }
     void recoil()
     {
