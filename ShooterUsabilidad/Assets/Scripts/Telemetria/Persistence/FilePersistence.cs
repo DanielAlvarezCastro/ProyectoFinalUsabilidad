@@ -15,13 +15,31 @@ public class FilePersistence : IPersistence
     public FilePersistence(ISerializer serializer, string basePath)
     {
         this.serializer = serializer;
-        this.basePath = Application.persistentDataPath + basePath;
+        this.basePath = Application.persistentDataPath + "/" + basePath;
     }
 
     //Inicializacion
     public override void Init( ) {
-        
+
+        Debug.Log("Initializing File Persistance...");
+
         events = new List<string>();
+
+        //Creamos la carpeta de la sesion
+        try
+        {
+            Debug.Log("Creating Directory " + basePath);
+            if (!Directory.Exists(basePath))
+            {
+                Directory.CreateDirectory(basePath);
+            }
+
+        }
+        catch (IOException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+
     }
     public override void End() { }
     public override void Send(TrackerEvent e) {
@@ -34,7 +52,7 @@ public class FilePersistence : IPersistence
     public override void Flush() {
         try
         {
-            File.WriteAllText(Application.persistentDataPath + sessionPath, string.Join("\n",events.ToArray()));
+            File.WriteAllText(sessionPath, string.Join("\n",events.ToArray()));
             events.Clear();
         }
         catch (Exception e)
@@ -46,7 +64,7 @@ public class FilePersistence : IPersistence
     //Crea un nuevo archivo para la sesion correspondiente
     public override void NewSession(string sessionName)
     {
-        sessionPath = basePath + "_" + sessionName;
+        sessionPath = basePath + "/" + sessionName;
         CreateFile(sessionName);
     }
 

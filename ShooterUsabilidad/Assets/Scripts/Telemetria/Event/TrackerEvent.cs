@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum EventType { SESSION_START, SESSION_END, TEST_START, TEST_END}
 
 [System.Serializable]
+public enum EventType { SESSION_START, SESSION_END,SHOOT}
 public class TrackerEvent
 {
     public EventType eventType;

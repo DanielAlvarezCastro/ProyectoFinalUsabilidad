@@ -14,6 +14,7 @@ public class Tracker : MonoBehaviour
 
     [Header("Persistence Settings")]
     public PERSISTENCE_TYPE persistenceType = PERSISTENCE_TYPE.FILE;
+    public string folderName = "Tracking";
     IPersistence persistenceObject;
     [Header("Serializer Settings")]
     public SERIALIZER_TYPE serializerType = SERIALIZER_TYPE.JSON;
@@ -31,6 +32,7 @@ public class Tracker : MonoBehaviour
     //Inicializaciones etc
     public void Init()
     {
+        print("Initializing Tracker...");
         //Perparamos el serializador
         SetSerializer();
         serializerObject.Init();
@@ -70,7 +72,7 @@ public class Tracker : MonoBehaviour
         switch (persistenceType)
         {
             case PERSISTENCE_TYPE.FILE:
-                persistenceObject = new FilePersistence(serializerObject, "");
+                persistenceObject = new FilePersistence(serializerObject, folderName);
                 break;
             case PERSISTENCE_TYPE.SERVER:
                 break;
@@ -85,17 +87,20 @@ public class Tracker : MonoBehaviour
         persistenceObject.Send(e);
     }
 
-
-    // Start is called before the first frame update
-    void Start()
+    public TrackerEvent GenerateTrackerEvent(EventType type)
     {
-        
+        return new TrackerEvent(GetTimeStamp(), type);
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public void StartTest(string testName)
     {
-        
+        persistenceObject.NewSession(testName);
+    }
+
+    public void EndTest()
+    {
+        persistenceObject.Flush();
     }
 
     //Devuelve una cadena que contiene la timestamp dependiendo del tipo elegido en el editor
@@ -112,10 +117,19 @@ public class Tracker : MonoBehaviour
     static public Tracker getInstance()
     {
         //Inicializamos la instancia
-        if(instance == null)
+        if (instance == null)
         {
-            instance = new Tracker();
-            instance.Init();
+ 
+            instance = FindObjectOfType<Tracker>();
+            // fallback, might not be necessary.
+            if (instance == null)
+            {
+                Debug.Log("Creating new Tracker instance");
+                instance = new GameObject(typeof(Tracker).Name).AddComponent<Tracker>();
+                instance.Init();
+            }
+            DontDestroyOnLoad(instance.gameObject);
+
         }
         return instance;
     }

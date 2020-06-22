@@ -21,6 +21,11 @@ public class GameManager : MonoBehaviour
             LoadWeapon();
         }
     }
+    private void Start()
+    {
+        Tracker.getInstance().TrackEvent(Tracker.getInstance().GenerateTrackerEvent(EventType.SESSION_START));
+    }
+   
     void LoadWeapon()
     {
         initWeapon = GameSessionManager.Instance.GetSelectedWeapon();

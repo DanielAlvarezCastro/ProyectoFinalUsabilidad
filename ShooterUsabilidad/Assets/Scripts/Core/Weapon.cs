@@ -197,6 +197,8 @@ public class Weapon : MonoBehaviour
             //player.commandShoot(shotgun, numBullets, damagePerBullet, actualDesviation, bullet, bulletHit, shootPos, cameraObj, auxBul);
             realShoot();
 
+            Tracker.getInstance().TrackEvent(Tracker.instance.GenerateTrackerEvent(EventType.SHOOT));
+
             //Disparo normal de cadera
             if (!apuntando)
             {
