@@ -16,6 +16,7 @@ public class Tracker : MonoBehaviour
     public PERSISTENCE_TYPE persistenceType = PERSISTENCE_TYPE.FILE;
     public string folderName = "Tracking";
     IPersistence persistenceObject;
+
     [Header("Serializer Settings")]
     public SERIALIZER_TYPE serializerType = SERIALIZER_TYPE.JSON;
     ISerializer serializerObject;
@@ -30,6 +31,19 @@ public class Tracker : MonoBehaviour
     public bool seconds;
     public bool milliseconds;
     //Inicializaciones etc
+
+    private void Awake()
+    {
+        if (instance != null)
+            Destroy(this);
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(instance.gameObject);
+            Init();
+        }
+    }
+
     public void Init()
     {
         print("Initializing Tracker...");
@@ -89,7 +103,7 @@ public class Tracker : MonoBehaviour
 
     public TrackerEvent GenerateTrackerEvent(EventType type)
     {
-        return new TrackerEvent(GetTimeStamp(), type);
+        return new TrackerEvent(type);
     }
 
 
@@ -111,7 +125,7 @@ public class Tracker : MonoBehaviour
         string timeStamp;
         string format;
 
-        return now.ToString("h:mm:ss:fff");
+        return now.ToString("hh:mm:ss:fff");
     }
 
     static public Tracker getInstance()

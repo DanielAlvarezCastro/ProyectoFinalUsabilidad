@@ -57,7 +57,7 @@ public class FilePersistence : IPersistence
         }
         catch (Exception e)
         {
-            Debug.LogError("Error guardando " + sessionPath);
+            Debug.LogError("Error guardando " + sessionPath + " : " + e.Message);
         }
     }
 
@@ -89,7 +89,7 @@ public class FilePersistence : IPersistence
         }
         catch (Exception e)
         {
-            Debug.Log("Problema con el fichero json " + sessionPath);
+            Debug.Log("Problema con el fichero json " + sessionPath + " : " + e.Message);
         }
 
     }

@@ -39,13 +39,17 @@ public class TrackingScript : MonoBehaviour
             if (!dentro && hit.collider.CompareTag("Enemy"))
             {
                 dentro = true;
-                print("mando evento dentro");
+                // print("mando evento dentro");
+                if(started)
+                    Tracker.instance.TrackEvent(new AimEvent(AimEventType.AIM_IN));
                 tT.enterRay();
             }
             else if (dentro && !hit.collider.CompareTag("Enemy"))
             {
                 dentro = false;
                 print("mando evento fuera");
+                if (started)
+                    Tracker.instance.TrackEvent(new AimEvent(AimEventType.AIM_OUT));
                 tT.exitRay();
                 actualStartTime = startTime;
                 tT.startTimeTest(startTime, actualStartTime);
@@ -60,10 +64,14 @@ public class TrackingScript : MonoBehaviour
             {
                 started = true;
                 GameObject.FindObjectOfType<TrackingTest>().startTest();
+                Tracker.getInstance().TrackEvent(Tracker.getInstance().GenerateTrackerEvent(EventType.SESSION_START));
+                Tracker.instance.TrackEvent(new AimEvent(AimEventType.AIM_IN));
             }
         }
         else if(dentro)
         {
+            if (started)
+                Tracker.instance.TrackEvent(new AimEvent(AimEventType.AIM_OUT));
             dentro = false;
             tT.exitRay();
             actualStartTime = startTime;

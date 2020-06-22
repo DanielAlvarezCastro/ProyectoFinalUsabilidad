@@ -23,7 +23,6 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        Tracker.getInstance().TrackEvent(Tracker.getInstance().GenerateTrackerEvent(EventType.SESSION_START));
     }
    
     void LoadWeapon()
