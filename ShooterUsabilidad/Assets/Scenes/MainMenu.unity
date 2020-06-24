@@ -902,6 +902,14 @@ MonoBehaviour:
   - {fileID: 5640544324070514888, guid: 1cdedc3d59a83a74ca304651804076c3, type: 3}
   - {fileID: 8243379952454616757, guid: f18a1140573ee874fb976ebbde481c14, type: 3}
   - {fileID: 5478392615272761720, guid: 15e04c2ac3fc258448bec6e5ab55c848, type: 3}
+  sceneNames:
+  - MainMenu
+  - PruebaTracking
+  - PruebaMoviles
+  - PruebaReflejos
+  - PruebaPrecision
+  - PruebaVelocidad
+  - Resultados
 --- !u!4 &222008567
 Transform:
   m_ObjectHideFlags: 0
@@ -2235,7 +2243,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 862782853}
         m_MethodName: SelectTest
-        m_Mode: 5
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2663,7 +2671,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 862782853}
         m_MethodName: SelectTest
-        m_Mode: 5
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2993,7 +3001,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 862782853}
         m_MethodName: SelectTest
-        m_Mode: 5
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5173,7 +5181,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 862782853}
         m_MethodName: SelectTest
-        m_Mode: 5
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5610,7 +5618,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -193.52003}
+  m_AnchoredPosition: {x: 0, y: -193.52002}
   m_SizeDelta: {x: 0, y: -387.15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1302347936
@@ -6727,7 +6735,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 862782853}
         m_MethodName: SelectTest
-        m_Mode: 5
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -8139,7 +8147,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 862782853}
         m_MethodName: SelectTest
-        m_Mode: 5
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
