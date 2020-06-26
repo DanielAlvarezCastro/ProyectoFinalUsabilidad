@@ -1421,7 +1421,7 @@ GameObject:
   - component: {fileID: 1162759942}
   - component: {fileID: 1162759939}
   m_Layer: 0
-  m_Name: PrecisionShootingTest
+  m_Name: TestManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1439,8 +1439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ec4f6855224d4d478f3e47962dcdf91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testDuration: 12
-  objetiveTime: 3
+  testDuration: 30
 --- !u!114 &1162759940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1453,7 +1452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17fc5833037f2c541b5964ad9384db38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objetivo: {fileID: 2415087994980127172, guid: d2c7c0f34fe37ec428e0776a4f036e3c,
+  objetivo: {fileID: 6158640208245453798, guid: dc6a48d38ac30254fb6d29d98613c1e4,
     type: 3}
   maxTransform: {fileID: 555243758}
   minTransform: {fileID: 996416983}

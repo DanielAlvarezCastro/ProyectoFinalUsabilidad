@@ -282,6 +282,10 @@ public class Weapon : MonoBehaviour
                         hit.collider.GetComponent<Enemy>().getDamage(damagePerBullet);
                     if (hit.collider.GetComponent<Diana>() != null)
                         hit.collider.GetComponent<Diana>().hitPoint(hit.point);
+                    //Una bala ha colisionado con un target
+                    if (hit.collider.GetComponent<Target>() != null)
+                        hit.collider.GetComponent<Target>().TargetHit();
+
 
                     bulletHitInst(hit);
                 }
