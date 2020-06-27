@@ -30,8 +30,11 @@ public class TrackingScript : MonoBehaviour
     }
     public void endTest()
     {
+        Tracker.instance.TrackEvent(new AimEvent(AimEventType.AIM_OUT));
+        Tracker.instance.TrackEvent(Tracker.instance.GenerateTrackerEvent(EventType.SESSION_END));
+        Tracker.getInstance().EndTest();
         ended = true;
-        Tracker.getInstance().TrackEvent(Tracker.getInstance().GenerateTrackerEvent(EventType.SESSION_END));
+
     }
     void track()
     {

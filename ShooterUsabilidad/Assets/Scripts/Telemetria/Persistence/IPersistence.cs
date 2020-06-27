@@ -11,4 +11,7 @@ public class IPersistence
     virtual public void Flush() { }
 
     virtual public void NewSession(string sessionName) { }
+
+    virtual public void LoadSession(string sessionName) { }
+    virtual public List<TrackerEvent> GetTrackerEvents() { return null; }
 }

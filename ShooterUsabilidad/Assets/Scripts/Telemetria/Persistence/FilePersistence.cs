@@ -12,6 +12,10 @@ public class FilePersistence : IPersistence
     ISerializer serializer;
 
     List<string> events;
+
+    List<TrackerEvent> loadedEvents;
+    string sessionEvents;
+
     public FilePersistence(ISerializer serializer, string basePath)
     {
         this.serializer = serializer;
@@ -68,7 +72,6 @@ public class FilePersistence : IPersistence
         CreateFile(sessionName);
     }
 
-
     //Crea un nuevo archivo con el nombre especificado
     public void CreateFile(string sessionName)
     {
@@ -94,4 +97,53 @@ public class FilePersistence : IPersistence
 
     }
 
+    public override void LoadSession(string sessionName)
+    {
+        string jsonText = "";
+        string filePath = basePath + "/" + sessionName;
+        List<TrackerEvent> events = new List<TrackerEvent>();
+
+        try
+        {
+            //Si existe lo cargamos
+            if (File.Exists(filePath))
+            {
+                Debug.Log("Existe el archivo " + sessionName);
+                jsonText = File.ReadAllText(filePath);
+                Debug.Log(jsonText);
+            }
+            //Y si no lo creamos
+            else {
+                Debug.LogWarning("No existe la prueba " + sessionName);
+            }
+
+            sessionEvents = jsonText;
+        }
+
+        //Si algo va mal lo infrmamos
+        catch (Exception e)
+        {
+            Debug.LogWarning("Problema con el fichero json " + sessionName);
+            Debug.LogWarning(e.Message);
+            sessionEvents = jsonText;
+        }
+    }
+
+    public override List<TrackerEvent> GetTrackerEvents() {
+        loadedEvents = new List<TrackerEvent>();
+
+
+        string[] stringEvents = sessionEvents.Split('\n');
+
+        Debug.Log("Num eventos: " + stringEvents.Length);
+
+        for(int i = 0; i < stringEvents.Length; i++)
+        {
+            loadedEvents.Add(serializer.Deserialize(stringEvents[i]));
+        }
+
+        Debug.Log("Num eventos:" + loadedEvents.Count);
+
+        return loadedEvents;
+    }
 }

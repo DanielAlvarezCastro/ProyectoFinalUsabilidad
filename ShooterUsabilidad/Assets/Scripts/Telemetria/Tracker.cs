@@ -11,6 +11,9 @@ public class Tracker : MonoBehaviour
 
     static public Tracker instance = null;
 
+    //General
+    [Header("General")]
+    public bool testing = false;
 
     [Header("Persistence Settings")]
     public PERSISTENCE_TYPE persistenceType = PERSISTENCE_TYPE.FILE;
@@ -98,7 +101,8 @@ public class Tracker : MonoBehaviour
 
     public void TrackEvent(TrackerEvent e)
     {
-        persistenceObject.Send(e);
+        if(testing)
+            persistenceObject.Send(e);
     }
 
     public TrackerEvent GenerateTrackerEvent(EventType type)
@@ -110,15 +114,23 @@ public class Tracker : MonoBehaviour
     public void StartTest(string testName)
     {
         persistenceObject.NewSession(testName);
+        testing = true;
     }
 
     public void EndTest()
     {
         persistenceObject.Flush();
+        testing = false;
+    }
+
+    public List<TrackerEvent> GetTestEvents(string sessionName)
+    {
+        persistenceObject.LoadSession(sessionName);
+        return persistenceObject.GetTrackerEvents();
     }
 
     //Devuelve una cadena que contiene la timestamp dependiendo del tipo elegido en el editor
-    public string GetTimeStamp()
+    public string GetFormattedTimeStamp()
     {
         System.DateTime now;
         now = System.DateTime.Now;
@@ -126,6 +138,13 @@ public class Tracker : MonoBehaviour
         string format;
 
         return now.ToString("hh:mm:ss:fff");
+    }
+    public System.DateTime GetTimeStamp()
+    {
+        System.DateTime now;
+        now = System.DateTime.Now;
+
+        return now;
     }
 
     static public Tracker getInstance()

@@ -11,4 +11,16 @@ public class JSONSerializer : ISerializer
     {
         return JsonConvert.SerializeObject(e,Tracker.getInstance().jsonFormatting).ToString();
     }
+
+    override public TrackerEvent Deserialize(string s) {
+        TrackerEvent e = JsonConvert.DeserializeObject<TrackerEvent>(s);
+
+        switch (e.eventType)
+        {
+            case EventType.AIM:
+                return JsonConvert.DeserializeObject<AimEvent>(s);
+            default:
+                return e;
+        }
+    }
 }

@@ -10,11 +10,13 @@ public class TrackerEvent
 {
     public EventType eventType;
     public string eventTypeString;
-    public string time;
+    public string formattedTime;
+    public System.DateTime time;
 
     public TrackerEvent(EventType eventType)
     {
         time = Tracker.instance.GetTimeStamp();
+        formattedTime = Tracker.instance.GetFormattedTimeStamp();
         eventTypeString = eventType.ToString();
         this.eventType = eventType;
     }

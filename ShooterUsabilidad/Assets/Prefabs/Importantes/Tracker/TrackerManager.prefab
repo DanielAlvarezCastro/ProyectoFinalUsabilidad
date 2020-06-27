@@ -46,7 +46,7 @@ MonoBehaviour:
   persistenceType: 0
   folderName: Tracking
   serializerType: 0
-  jsonFormatting: 1
+  jsonFormatting: 0
   date: 0
   hour: 0
   minutes: 0
