@@ -14,15 +14,11 @@ public class PrecisionShootingTest : MonoBehaviour
     //El tiempo que ha pasado desde que la prueba ha empezado
     float actualTestTime = 0.0f;
 
-    //Tiempo que tarda un objetivo en desaparecer
-   /* public float objetiveTime;
-    float actualObjetiveTime = 0.0f;*/
+    //Cuanto se retrocede al fallar un objetivo
+    public float missPenalty;
 
     //Suma 1 por cada pulsacion buena
     private int actualNumObj = 0;
-
-    //Cuenta las pulsaciones que son erroneas
-    private int failClick = 0;
 
     //Informa de cuando ha empezado la prueba
     private ClickToStart startEvent;
@@ -56,33 +52,7 @@ public class PrecisionShootingTest : MonoBehaviour
             {
                 //Se aumenta el tiempo de la prueba y el del objetivo.
                 actualTestTime += Time.deltaTime;
-                //actualObjetiveTime += Time.deltaTime;
-
-                //El probador ha fallado, crea una nueva diana
-                /*if(actualObjetiveTime >= objetiveTime)
-                {
-                    newObjetive();
-                }*/
-
-                //Diana golpeada con éxito
-                //FALTA: COMPROBAR CON EL RAYCAST SI SE HA DADO EN UNA DIANA
-                /*else if ((Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)))
-                {
-                    //Suma 1 a las dianas golpeadas
-                    actualNumObj++;
-
-                    //Se coloca una nueva diana en una posicion random y se reinicia su tiempo de desaparicion
-                    newObjetive();
-
-                    //Para comprobar la puntuacion
-                    Debug.Log("Se han acertado: " + actualNumObj);
-                }
-                //FALTA: SI NO HAY RAYCAST Y PULSAS QUE CUENTE EL FALLO
-                else if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
-                {
-                    failClick++;
-                    Debug.Log("Numero de fallos: " + failClick);
-                }*/
+               
             }
             //Termina la prueba
             else
@@ -105,7 +75,7 @@ public class PrecisionShootingTest : MonoBehaviour
         actualNumObj++;
 
         //Se coloca una nueva diana en una posicion random y se reinicia su tiempo de desaparicion
-        newObjetive();
+        newObjetive(true);
 
         //Para comprobar la puntuacion
         Debug.Log("Se han acertado: " + actualNumObj);
@@ -114,19 +84,27 @@ public class PrecisionShootingTest : MonoBehaviour
     public void targetMissed(Target.TargetInfo info)
     {
         //Se coloca una nueva diana en una posicion random y se reinicia su tiempo de desaparicion
-        newObjetive();
+        newObjetive(false);
 
         //Para comprobar la puntuacion
         Debug.Log("Se ha fallado un objetivo");
     }
 
     //Hace aparecer ua nueva diana y reinicia su tiempo de desaparicion FALTA AUMENTAR SU TAMAÑO SI ES NECESARIO
-    void  newObjetive()
+    void  newObjetive(bool lastTargetHit)
     {
-        actualObjetive = manageObjetives.Spawn();
-        manageObjetives.RandomGOPosition(actualObjetive);
-        //actualObjetiveTime = 0.0f;
+        actualObjetive = manageObjetives.dependientSpawn(actualObjetive.transform.position);
+        setTargetDificulty(actualObjetive, lastTargetHit);
     }
+
+    //Método que calibra la dificultad de el objetivo siguiente depende de la prueba a la prueba en la que se encuentre
+    void setTargetDificulty(GameObject target, bool lastTargetHit)
+    {
+        if (!lastTargetHit) actualNumObj -= (int) (actualNumObj*missPenalty);
+        target.GetComponent<Target>().deepOffset = transform.position.z * (Mathf.Log10(actualNumObj + 1) / Mathf.Log10(200));
+        target.GetComponent<Target>().sizeScale = 0.10f/(Mathf.Log10(actualNumObj+1) / Mathf.Log10(200));
+        Debug.Log(transform.position.z * (Mathf.Log10(actualNumObj + 1) / Mathf.Log10(200)));
+    }  
 }
 
 
