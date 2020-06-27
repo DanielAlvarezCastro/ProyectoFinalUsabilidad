@@ -15,8 +15,13 @@ public class TrackingTest : MonoBehaviour
     public float maxRandTime = 5;
     float actualRandTime = 0;
 
+    public float testTime = 30;
+    float actualTestTime = 0;
+    public float changeSceneTime = 3;
+
 
     bool started = false;
+    bool ended = false;
     Vector3 dirVec;
     Vector3 initPos;
     MeshRenderer mesh;
@@ -37,6 +42,7 @@ public class TrackingTest : MonoBehaviour
     }
     public void startTest()
     {
+        started = true;
         initPos = transform.position;
         changeDir();
     }
@@ -44,25 +50,49 @@ public class TrackingTest : MonoBehaviour
     {
         move();
         limits();
+        endTest();
     }
-
+    void endTest()
+    {
+        if (started && actualTestTime < testTime)
+            actualTestTime += Time.deltaTime;
+        else if(started && !ended)
+        {
+            //started = false;
+            ended = true;
+            textStart.SetActive(true);
+            anim.Play("Contador", 0, 0);
+            text.text = "STOP";
+            CancelInvoke();
+            dirVec = Vector3.zero;
+            GameObject.FindObjectOfType<TrackingScript>().endTest();
+            Invoke("changeScene", changeSceneTime);
+        }
+    }
+    void changeScene()
+    {
+        //CAMBIO DE ESCENA
+    }
     public void startTimeTest(float maxTime, float actualTime)
     {
-        if (actualTime < maxTime && actualTime > 0)
+        if (!ended)
         {
-            textStart.SetActive(true);
-            int actualInt = (Mathf.RoundToInt(actualTime + 0.5f));
-            text.text = actualInt.ToString();
-            if(actualInt < lastInt)
+            if (actualTime < maxTime && actualTime > 0)
             {
-                lastInt = actualInt;
-                anim.Play("Contador", 0, 0);
+                textStart.SetActive(true);
+                int actualInt = (Mathf.RoundToInt(actualTime + 0.5f));
+                text.text = actualInt.ToString();
+                if (actualInt < lastInt)
+                {
+                    lastInt = actualInt;
+                    anim.Play("Contador", 0, 0);
+                }
             }
-        }
-        else
-        {
-            lastInt = 4;
-            textStart.SetActive(false);
+            else
+            {
+                lastInt = 4;
+                textStart.SetActive(false);
+            }
         }
     }
     public void enterRay()

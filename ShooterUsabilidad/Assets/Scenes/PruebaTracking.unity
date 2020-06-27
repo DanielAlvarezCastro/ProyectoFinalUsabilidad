@@ -963,6 +963,8 @@ MonoBehaviour:
   maxVert: 3
   minRandTime: 1
   maxRandTime: 2
+  testTime: 30
+  changeSceneTime: 3
   textStart: {fileID: 2078458353}
 --- !u!1 &944668961
 GameObject:
@@ -2372,7 +2374,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2078458354
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2382,7 +2384,7 @@ RectTransform:
   m_GameObject: {fileID: 2078458353}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.4883, y: 1.4883, z: 1.4883}
   m_Children: []
   m_Father: {fileID: 1245795230}
   m_RootOrder: 2
@@ -2443,8 +2445,8 @@ MonoBehaviour:
   m_fontSize: 149.38
   m_fontSizeBase: 149.38
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 60
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514

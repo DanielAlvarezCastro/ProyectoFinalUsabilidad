@@ -9,6 +9,7 @@ public class TrackingScript : MonoBehaviour
     bool dentro = false;
 
     bool started = false;
+    bool ended = false;
     public float startTime = 3;
     float actualStartTime = 0;
     TrackingTest tT;
@@ -25,9 +26,13 @@ public class TrackingScript : MonoBehaviour
     {
         if (cameraObj == null)
             cameraObj = GetComponentInChildren<Camera>();
-        else track();
+        else if(!ended)track();
     }
-
+    public void endTest()
+    {
+        ended = true;
+        Tracker.getInstance().TrackEvent(Tracker.getInstance().GenerateTrackerEvent(EventType.SESSION_END));
+    }
     void track()
     {
         ray = new Ray(cameraObj.transform.position, cameraObj.transform.forward);
@@ -47,7 +52,7 @@ public class TrackingScript : MonoBehaviour
             else if (dentro && !hit.collider.CompareTag("Enemy"))
             {
                 dentro = false;
-                print("mando evento fuera");
+                //print("mando evento fuera");
                 if (started)
                     Tracker.instance.TrackEvent(new AimEvent(AimEventType.AIM_OUT));
                 tT.exitRay();
@@ -63,7 +68,7 @@ public class TrackingScript : MonoBehaviour
             else if(!started && actualStartTime <= 0)
             {
                 started = true;
-                GameObject.FindObjectOfType<TrackingTest>().startTest();
+                tT.startTest();
                 Tracker.getInstance().TrackEvent(Tracker.getInstance().GenerateTrackerEvent(EventType.SESSION_START));
                 Tracker.instance.TrackEvent(new AimEvent(AimEventType.AIM_IN));
             }
