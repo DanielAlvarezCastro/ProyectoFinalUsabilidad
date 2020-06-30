@@ -14,6 +14,8 @@ public class PrecisionShootingTest : MonoBehaviour
     //El tiempo que ha pasado desde que la prueba ha empezado
     float actualTestTime = 0.0f;
 
+    public float targetLifeTime;
+
     //Cuanto se retrocede al fallar un objetivo
     public float missPenalty;
 
@@ -25,6 +27,7 @@ public class PrecisionShootingTest : MonoBehaviour
 
     //Para controlar cuando aparece el primer objetivo
     private bool firstSpawn = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -101,9 +104,10 @@ public class PrecisionShootingTest : MonoBehaviour
     void setTargetDificulty(GameObject target, bool lastTargetHit)
     {
         if (!lastTargetHit) actualNumObj -= (int) (actualNumObj*missPenalty);
-        target.GetComponent<Target>().deepOffset = transform.position.z * (Mathf.Log10(actualNumObj + 1) / Mathf.Log10(200));
-        target.GetComponent<Target>().sizeScale = 0.10f/(Mathf.Log10(actualNumObj+1) / Mathf.Log10(200));
-        Debug.Log(transform.position.z * (Mathf.Log10(actualNumObj + 1) / Mathf.Log10(200)));
+        float deep = transform.position.z * (Mathf.Log10(actualNumObj + 1) / Mathf.Log10(200));
+        float size = 0.10f/(Mathf.Log10(actualNumObj+1) / Mathf.Log10(200));
+        target.GetComponent<Target>().setTargetInfo(size, deep, targetLifeTime);
+
     }  
 }
 
