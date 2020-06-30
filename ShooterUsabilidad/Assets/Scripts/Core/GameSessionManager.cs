@@ -10,8 +10,9 @@ public class GameSessionManager : MonoBehaviour
     int selectedTest;
     public GameObject[] weapons;
     public string[] sceneNames;
-    int currentScene = 0;
+    int currentScene;
     bool completeTest=false;
+    float sensibilidad;
     // Start is called before the first frame update
     void Awake()
     {
@@ -26,6 +27,7 @@ public class GameSessionManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    
     public void SetPlayerName(string name)
     {
         playerName = name;
@@ -62,19 +64,33 @@ public class GameSessionManager : MonoBehaviour
     {
         if (selectedTest == 0)
         {
+            selectedTest = 1;
             SetCompleteTest(true);
-            SceneManager.LoadScene(sceneNames[1]);
         }
         else
         {
-            SceneManager.LoadScene(sceneNames[selectedTest]);
+            SetCompleteTest(false);
         }
+        currentScene = 1;
+        SceneManager.LoadScene(sceneNames[1]);
+    }
+    public void SetSensitivity(float sens)
+    {
+        sensibilidad = sens;
+    }
+    public float GetSensitivity()
+    {
+        return sensibilidad;
     }
     public void GoToNextScene()
     {
         currentScene++;
         if (currentScene >= sceneNames.Length) currentScene = 0;
         SceneManager.LoadScene(sceneNames[currentScene]);
+    }
+    public void StartTest()
+    {
+        SceneManager.LoadScene(sceneNames[selectedTest+1]);
     }
     public void EndGame()
     {

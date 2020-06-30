@@ -904,10 +904,11 @@ MonoBehaviour:
   - {fileID: 5478392615272761720, guid: 15e04c2ac3fc258448bec6e5ab55c848, type: 3}
   sceneNames:
   - MainMenu
+  - SeleccionSensibilidad
   - PruebaTracking
   - PruebaMoviles
   - PruebaReflejos
-  - PruebaPrecision
+  - PruebaDisparoPrecision
   - PruebaVelocidad
   - Resultados
 --- !u!4 &222008567

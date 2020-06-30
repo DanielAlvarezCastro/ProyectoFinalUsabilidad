@@ -9,9 +9,15 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: f753d95b241d3364584bed6e53faa106
   - enabled: 1
+    path: Assets/Scenes/SeleccionSensibilidad.unity
+    guid: c4c0aaa95e11e9d4db39e30c4c4f4f9e
+  - enabled: 1
     path: Assets/Scenes/PruebaTracking.unity
     guid: a4fc9c3bf3f2e4347996acd1c27a4bba
   - enabled: 1
     path: Assets/Scenes/PruebaReflejos.unity
     guid: 5ec67cc4b96015141aaf3d92223de976
+  - enabled: 1
+    path: Assets/Scenes/PruebaDisparoPrecision.unity
+    guid: 2d95ea65b5ce23b48afbaafbce7f78c9
   m_configObjects: {}

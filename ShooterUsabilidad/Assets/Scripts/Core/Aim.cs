@@ -46,6 +46,11 @@ public class Aim : MonoBehaviour
         if (rb)
             rb.freezeRotation = true;
         originalRotation = transform.localRotation;
+
+        if (GameSessionManager.Instance != null)
+        {
+            SetSensitivity(GameSessionManager.Instance.GetSensitivity());
+        }
     }
 
     void Update()
@@ -154,7 +159,11 @@ public class Aim : MonoBehaviour
         sensitivityX = sensitivityX* aimMult;
         sensitivityY = sensitivityY* aimMult;
     }
-
+    public void SetSensitivity(float sens)
+    {
+        sensitivityX = sens;
+        sensitivityY = sens;
+    }
 
     public static float ClampAngle(float angle, float min, float max)
     {
