@@ -5,6 +5,19 @@ using UnityEngine;
 public class TestStart : MonoBehaviour
 {
     public string testName = "default";
+
+    private const int COUNT = (int)EventType.LENGTH;
+    [SerializeField]
+
+    [System.Serializable]
+    public class ArrayInitializer
+    {
+        public EventOption[] values;
+        public ArrayInitializer(string[] defaults) { values = new EventOption[COUNT]; for (int i = 0; i < COUNT; i++) values[i] = new EventOption((EventType)i); }
+    }
+
+    public ArrayInitializer eventOptions = new ArrayInitializer(new string[] { "a", "b", "c" });
+
     // Start is called before the first frame update
     private void Awake()
     {
