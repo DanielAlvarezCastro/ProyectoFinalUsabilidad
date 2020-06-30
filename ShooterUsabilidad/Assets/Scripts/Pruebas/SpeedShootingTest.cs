@@ -106,7 +106,7 @@ public class SpeedShootingTest : MonoBehaviour
         if (!lastTargetHit) actualNumObj -= (int)(actualNumObj * missPenalty);
         float deep = transform.position.z * (Mathf.Log10(actualNumObj + 1) / Mathf.Log10(200));
         float size = 1f;
-        float newTime = targetLifeTime / (Mathf.Log10(actualNumObj + 1) / Mathf.Log10(200));
+        float newTime = targetLifeTime / (Mathf.Log10(actualNumObj + 1) / Mathf.Log10(200))-targetLifeTime;
         Debug.Log(newTime);
         target.GetComponent<Target>().setTargetInfo(size, deep, newTime);
 

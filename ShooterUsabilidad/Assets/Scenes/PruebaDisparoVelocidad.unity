@@ -714,7 +714,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   testDuration: 30
-  targetLifeTime: 2
+  targetLifeTime: 0.5
   missPenalty: 0.75
 --- !u!114 &494136119
 MonoBehaviour:
