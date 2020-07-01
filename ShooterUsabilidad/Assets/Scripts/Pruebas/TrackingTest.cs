@@ -67,6 +67,8 @@ public class TrackingTest : MonoBehaviour
             dirVec = Vector3.zero;
             GameObject.FindObjectOfType<TrackingScript>().endTest();
             GameObject.FindObjectOfType<GUIManager>().EndTest();
+
+            GameObject.FindObjectOfType<TestStart>().Proccess();
             //Invoke("changeScene", changeSceneTime);
         }
     }

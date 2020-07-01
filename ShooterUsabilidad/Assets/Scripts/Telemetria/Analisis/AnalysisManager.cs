@@ -2,13 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum stat {precision, aimTime, reactionTime, tracking};
 public class AnalysisManager : MonoBehaviour
 {
-    float [] precision = new float[5];
-    float[] aimTime = new float[5];
-    float[] reactionTime = new float[5];
-    float[] tracking = new float[5];
+    List<float> precisionValues;
+    List<float> aimTimeValues;
+    List<float> reactionTimeValues;
+    List<float> trackingValues;
 
+    float mediaPrecision = 0;
+    float mediaAimTime = 0;
+    float mediaReactionTime = 0;
+    float mediaTracking = 0;
+
+    float notaFinal = 0;
 
     //TRACKING
     [Header("Tracking")]
@@ -49,15 +57,135 @@ public class AnalysisManager : MonoBehaviour
     [Range(0, 100)]
     public float reactionTimeVelPond = 0;
 
+
+    //NOTA FINAL
+    [Header("Nota final")]
+    [Range(0, 100)]
+    public float precisionTotalPond = 0;
+    [Range(0, 100)]
+    public float aimTimeTotalPond = 0;
+    [Range(0, 100)]
+    public float reactionTimeTotalPond = 0;
+    [Range(0, 100)]
+    public float trackingTotalPond = 0;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        precisionValues = new List<float>();
+        aimTimeValues = new List<float>();
+        reactionTimeValues = new List<float>();
+        trackingValues = new List<float>();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void addStadistic(stat category, float value)
+    {
+        switch(category)
+        {
+            case stat.precision:
+                precisionValues.Add(value);
+                break;
+            case stat.aimTime:
+                aimTimeValues.Add(value);
+                break;
+            case stat.reactionTime:
+                reactionTimeValues.Add(value);
+                break;
+            case stat.tracking:
+                trackingValues.Add(value);
+                break;
+        }
+    }
+
+    public void poderateStatsAndFinalScore()
+    {
+        //Ponderar cada estadística
+        ponderateStat(stat.precision, precisionValues.ToArray());
+        ponderateStat(stat.aimTime, aimTimeValues.ToArray());
+        ponderateStat(stat.reactionTime, reactionTimeValues.ToArray());
+        ponderateStat(stat.tracking, trackingValues.ToArray());
+
+        //Nota Final
+        generateFinalScore();
+    }
+
+    void ponderateStat(stat category, float[] stats)
+    {
+        if(category == stat.precision)
+        {
+            stats[0] *= precisionMovPond;
+            stats[1] *= precisionPrecPond;
+            stats[2] *= precisionVelPond;
+
+            float media = 0;
+            for (int i = 0; i < stats.Length; i++)
+            {
+                media += stats[i];
+            }
+            media /= stats.Length;
+            mediaPrecision = media;
+        }
+        else if(category == stat.aimTime)
+        {
+            stats[0] *= aimTimeMovPond;
+            stats[1] *= aimTimePrecPond;
+            stats[2] *= aimTimeVelPond;
+
+            float media = 0;
+            for (int i = 0; i < stats.Length; i++)
+            {
+                media += stats[i];
+            }
+            media /= stats.Length;
+            mediaAimTime = media;
+        }
+        else if (category == stat.tracking)
+        {
+            stats[0] *= trackingTrackPond;
+            stats[1] *= trackingMovPond;
+
+            float media = 0;
+            for (int i = 0; i < stats.Length; i++)
+            {
+                media += stats[i];
+            }
+            media /= stats.Length;
+            mediaTracking = media;
+        }
+        else if (category == stat.reactionTime)
+        {
+            stats[0] *= reactionTimeMovPond;
+            stats[1] *= reactionTimeReflexPond;
+            stats[2] *= reactionTimePrecPond;
+            stats[3] *= reactionTimeVelPond;
+
+            float media = 0;
+            for (int i = 0; i < stats.Length; i++)
+            {
+                media += stats[i];
+            }
+            media /= stats.Length;
+            mediaReactionTime = media;
+        }
+
+    }
+
+    public void generateFinalScore()
+    {
+        notaFinal = 0;
+        notaFinal += mediaPrecision*precisionTotalPond;
+        notaFinal += mediaAimTime * aimTimeTotalPond;
+        notaFinal += mediaReactionTime * reactionTimeTotalPond;
+        notaFinal += mediaTracking * trackingTotalPond;
+
+
+        //Ya la tenemos
+        print(notaFinal);
     }
 }

@@ -790,18 +790,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0510e717c6112548976dc961b08514c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trackingTrackPond: 0
-  precisionMovPond: 0
-  aimTimeMovPond: 0
-  reactionTimeMovPond: 0
-  trackingMovPond: 0
-  reactionTimeReflexPond: 0
-  precisionPrecPond: 0
-  aimTimePrecPond: 0
-  reactionTimePrecPond: 0
-  precisionVelPond: 0
-  aimTimeVelPond: 0
-  reactionTimeVelPond: 0
+  trackingTrackPond: 85
+  precisionMovPond: 25
+  aimTimeMovPond: 35
+  reactionTimeMovPond: 10
+  trackingMovPond: 15
+  reactionTimeReflexPond: 70
+  precisionPrecPond: 65
+  aimTimePrecPond: 20
+  reactionTimePrecPond: 5
+  precisionVelPond: 10
+  aimTimeVelPond: 45
+  reactionTimeVelPond: 15
+  precisionTotalPond: 30
+  aimTimeTotalPond: 30
+  reactionTimeTotalPond: 15
+  trackingTotalPond: 25
 --- !u!114 &478862652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -814,6 +818,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 699e6912382f46b46b724c923a564cf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  score: 0
+  notaFinal: 0
 --- !u!1 &555243757
 GameObject:
   m_ObjectHideFlags: 0
@@ -1696,7 +1702,7 @@ MonoBehaviour:
   maxVert: 3
   minRandTime: 1
   maxRandTime: 2
-  testTime: 30
+  testTime: 10
   changeSceneTime: 3
   textStart: {fileID: 2078458353}
 --- !u!1 &944668961
@@ -2332,11 +2338,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 5697810062888769349, guid: daba50240fd1a6e4aa56bf06c167dd84,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5697810062932031900, guid: daba50240fd1a6e4aa56bf06c167dd84,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2420,6 +2421,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5697810062888769349, guid: daba50240fd1a6e4aa56bf06c167dd84,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5697810062932031891, guid: daba50240fd1a6e4aa56bf06c167dd84,
         type: 3}

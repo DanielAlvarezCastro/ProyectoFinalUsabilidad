@@ -4,8 +4,18 @@ using UnityEngine;
 
 public class ProcesadoReflejos : IProcessing
 {
-    public int NUM_TARGETS = 5;
+    int NUM_TARGETS = 5;
+    [HideInInspector]
+    public float notaFinal = 0;
 
+    public float maxPunt = 0.25f;
+    public float midPunt = 0.35f;
+    public float minPunt = 0.5f;
+
+    private void Start()
+    {
+        NUM_TARGETS = GameObject.FindObjectOfType<ReflexTest>().maxNumObj;
+    }
     public override void Process(string sessionName)
     {
         List<TrackerEvent> events = Tracker.instance.GetTestEvents(sessionName);
@@ -20,7 +30,7 @@ public class ProcesadoReflejos : IProcessing
         int failCount = 0;
 
 
-        bool isIn = false; //Para evitar dobles
+        bool targetActive = false; //Para evitar dobles
 
         foreach (TrackerEvent e in events)
         {
@@ -34,14 +44,14 @@ public class ProcesadoReflejos : IProcessing
 
                     lastTargetEvent = e.time;
 
-                    isIn = false;
+                    targetActive = true;
             }
             else if (e.eventType == EventType.CLICK)
             {
-                if (lastTargetEvent != System.DateTime.MinValue)
+                if (targetActive)
                 {
                     totalReactionTime += (e.time - lastTargetEvent);
-                    lastTargetEvent = System.DateTime.MinValue;
+                    targetActive = false;
                 }
                 else
                     failCount++;
@@ -50,7 +60,21 @@ public class ProcesadoReflejos : IProcessing
         }
 
         Debug.Log("Total time: " + totalTime.ToString(@"mm\:ss\.fff") + " / " + totalTime.ToString(@"mm\:ss\.fff"));
-        Debug.Log("Average aim time: " + (totalReactionTime.TotalMilliseconds / NUM_TARGETS)); 
+        //Debug.Log("Average aim time: " + (totalReactionTime.TotalMilliseconds / NUM_TARGETS));
+
+        //Analisis
+        notaFinal = (float)(totalReactionTime.TotalMilliseconds / Mathf.Max(NUM_TARGETS-failCount, 1));
+        print(notaFinal);
+        if (notaFinal <= maxPunt * 1000)
+            notaFinal = 100;
+        else if (notaFinal < midPunt * 1000)
+            notaFinal = 100 - 50 * (notaFinal - maxPunt*1000) / ((midPunt - maxPunt)*1000);
+        else if (notaFinal < minPunt * 1000)
+            notaFinal = 50 - 50 * (notaFinal - midPunt*1000) / ((minPunt - midPunt)*1000);
+        else notaFinal = 0;
+        print(notaFinal);
+        if (GameObject.FindObjectOfType<GameSessionManager>() != null && GameSessionManager.Instance.GetCompleteTest())
+            GameObject.FindObjectOfType<AnalysisManager>().addStadistic(stat.tracking, notaFinal);
     }
 
 

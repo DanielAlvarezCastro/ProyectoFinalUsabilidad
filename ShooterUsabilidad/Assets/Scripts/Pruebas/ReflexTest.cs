@@ -56,39 +56,44 @@ public class ReflexTest : MonoBehaviour
                 //Se spawnea la primera esfera
                 RandomTimeSpawn();
                 firstSpawn = true;
-                objetiveActive = true;
+               // objetiveActive = true;
             }
 
             //Mientras queden objetivos por salir
             if (actualNumObj < maxNumObj + 1 )
             {
                 //Si hay objetivo en pantalla y se pulsa
-                if (objetiveActive & (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)))
+                if((Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)))
                 {
-                    //Prueba
-                    //print(timeShoot);
-
-                    actualNumObj++;
-                    actualObjetive.SetActive(false);
-
-                    if (actualNumObj < maxNumObj + 1)
+                    Tracker.instance.TrackEvent(new TrackerEvent(EventType.CLICK));
+                    if (objetiveActive )
                     {
-                        objetiveActive = false;
-                        Tracker.instance.TrackEvent(new TrackerEvent(EventType.CLICK));
-                        RandomTimeSpawn();
+                        //Prueba
+                        //print(timeShoot);
 
-                        //Para comprobar la puntuacion
-                        Debug.Log("Se han acertado: " + actualNumObj);
+                        actualNumObj++;
+                        actualObjetive.SetActive(false);
+
+                        if (actualNumObj < maxNumObj)
+                        {
+                            objetiveActive = false;
+                            RandomTimeSpawn();
+
+                            //Para comprobar la puntuacion
+                            Debug.Log("Se han acertado: " + actualNumObj);
+                        }
+                        //Cuando se han destruido todos los objetivos
+                        else
+                        {
+                            Tracker.instance.TrackEvent(new TrackerEvent(EventType.SESSION_END));
+                            Tracker.getInstance().EndTest();
+                            startEvent.endTestText();
+                            GameObject.FindObjectOfType<GUIManager>().EndTest();
+                            GameObject.FindObjectOfType<TestStart>().Proccess();
+                            Debug.Log("La prueba ha terminado.");
+                        }
                     }
-                    //Cuando se han destruido todos los objetivos
-                    else
-                    {
-                        Tracker.instance.TrackEvent(new TrackerEvent(EventType.SESSION_END));
-                        Tracker.getInstance().EndTest();
-                        startEvent.endTestText();
-                        GameObject.FindObjectOfType<GUIManager>().EndTest();
-                        Debug.Log("La prueba ha terminado.");
-                    }
+
                 }
                 //Si el probador pulsa pero no hay objetivo se le penaliza
                 /*else if (!objetiveActive && (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)))
