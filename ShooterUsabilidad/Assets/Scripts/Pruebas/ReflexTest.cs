@@ -83,6 +83,7 @@ public class ReflexTest : MonoBehaviour
                     else
                     {
                         startEvent.endTestText();
+                        GameObject.FindObjectOfType<GUIManager>().EndTest();
                         Debug.Log("La prueba ha terminado.");
                     }
                 }

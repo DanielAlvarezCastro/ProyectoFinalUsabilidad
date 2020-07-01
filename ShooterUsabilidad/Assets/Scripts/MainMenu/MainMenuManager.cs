@@ -18,6 +18,7 @@ public class MainMenuManager : MonoBehaviour
     void Start()
     {
         ShowTestSelection();
+        Cursor.visible = true;
     }
     public void UpdateDescription(string txt)
     {

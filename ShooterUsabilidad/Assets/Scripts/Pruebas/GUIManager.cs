@@ -8,6 +8,7 @@ public class GUIManager : MonoBehaviour
     public GameObject panelResultados;
     public TextMeshProUGUI notaText;
     float notaNum;
+    float endTimer = 1.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,10 +51,14 @@ public class GUIManager : MonoBehaviour
         }
         else if (panelResultados.activeInHierarchy)
         {
-            Time.timeScale = 0;
-            if (Input.GetMouseButtonDown(0))
+            endTimer -= Time.deltaTime;
+            if (endTimer <= 0)
             {
-                GameSessionManager.Instance.GoToNextScene();
+                Time.timeScale = 0;
+                if (Input.GetMouseButtonDown(0))
+                {
+                    GameSessionManager.Instance.GoToNextScene();
+                }
             }
         }
         else
