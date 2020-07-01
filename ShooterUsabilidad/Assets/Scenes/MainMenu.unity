@@ -906,7 +906,7 @@ MonoBehaviour:
   - MainMenu
   - SeleccionSensibilidad
   - PruebaTracking
-  - PruebaMoviles
+  - PruebaDisparoMovimiento
   - PruebaReflejos
   - PruebaDisparoPrecision
   - PruebaDisparoVelocidad
@@ -2318,8 +2318,9 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: Dispara en cuanto aparezca un objetivo, no es necesario
-              apuntarle para destruirlo.
+            m_StringArgument: "Se medir\xE1n tus reflejos. Pulsa lo m\xE1s r\xE1pido
+              posible cuando aparezcan las esferas rojas en la pantalla. No es necesario
+              apuntar."
             m_BoolArgument: 0
           m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
