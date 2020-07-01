@@ -705,6 +705,7 @@ GameObject:
   - component: {fileID: 478862648}
   - component: {fileID: 478862650}
   - component: {fileID: 478862651}
+  - component: {fileID: 478862652}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -760,20 +761,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   testName: TrackingTest
+  proccesing: {fileID: 478862652}
   eventOptions:
     values:
     - typeString: SESSION_START
       type: 0
-      activated: 0
+      activated: 1
     - typeString: SESSION_END
       type: 1
-      activated: 0
+      activated: 1
     - typeString: SHOOT
       type: 2
       activated: 0
     - typeString: AIM
       type: 3
-      activated: 0
+      activated: 1
 --- !u!114 &478862651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -798,6 +800,18 @@ MonoBehaviour:
   precisionVelPond: 0
   aimTimeVelPond: 0
   reactionTimeVelPond: 0
+--- !u!114 &478862652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478862647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 699e6912382f46b46b724c923a564cf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &555243757
 GameObject:
   m_ObjectHideFlags: 0
