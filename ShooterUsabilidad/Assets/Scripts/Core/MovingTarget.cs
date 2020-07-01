@@ -15,8 +15,10 @@ public class MovingTarget : Target
     bool direction = false;
 
     //Distancia mínima y máxima en ambos en el eje X e Y a la que puede estar el límite del movimiento
-    public float minDistance;
-    public float maxDistance;
+    public float minDistanceX;
+    public float maxDistanceX;
+    public float minDistanceY;
+    public float maxDistanceY;
 
     Vector3 minLimit;
     Vector3 maxLimit;
@@ -29,15 +31,15 @@ public class MovingTarget : Target
         minLimit = GameObject.Find("MinPos").transform.position;
         maxLimit = GameObject.Find("MaxPos").transform.position;
 
-        if(destination.x - maxDistance < minLimit.x) destination.x += Random.Range(minDistance, maxDistance);
-        else if (destination.x + maxDistance > maxLimit.x) destination.x -= Random.Range(minDistance, maxDistance);
-        else if (Random.Range(0f, 1f) < 0.5f) destination.x -= Random.Range(minDistance, maxDistance);
-        else destination.x += Random.Range(minDistance, maxDistance);
+        if(destination.x - maxDistanceX < minLimit.x) destination.x += Random.Range(minDistanceX, maxDistanceX);
+        else if (destination.x + maxDistanceX > maxLimit.x) destination.x -= Random.Range(minDistanceX, maxDistanceX);
+        else if (Random.Range(0f, 1f) < 0.5f) destination.x -= Random.Range(minDistanceX, maxDistanceX);
+        else destination.x += Random.Range(minDistanceX, maxDistanceX);
 
-        if (destination.y - maxDistance < minLimit.y) destination.y += Random.Range(minDistance, maxDistance);
-        else if (destination.y + maxDistance > maxLimit.y) destination.y -= Random.Range(minDistance, maxDistance);
-        else if (Random.Range(0f, 1f) < 0.5f) destination.y -= Random.Range(minDistance, maxDistance);
-        else destination.y += Random.Range(minDistance, maxDistance);
+        if (destination.y - maxDistanceY < minLimit.y) destination.y += Random.Range(minDistanceY, maxDistanceY);
+        else if (destination.y + maxDistanceY > maxLimit.y) destination.y -= Random.Range(minDistanceY, maxDistanceY);
+        else if (Random.Range(0f, 1f) < 0.5f) destination.y -= Random.Range(minDistanceY, maxDistanceY);
+        else destination.y += Random.Range(minDistanceY, maxDistanceY);
 
     }
 
