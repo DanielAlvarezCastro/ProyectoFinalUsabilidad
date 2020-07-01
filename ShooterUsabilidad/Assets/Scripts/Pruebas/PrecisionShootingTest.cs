@@ -19,6 +19,18 @@ public class PrecisionShootingTest : MonoBehaviour
     //Cuanto se retrocede al fallar un objetivo
     public float missPenalty;
 
+    //Máximas kills por segundos para la prueba (sacadas de la scoreboard de Aimlab)
+    public float maxKPS;
+
+    //Racha máxima posible a alcanzar en la prueba
+    float maxKills;
+
+    //Puntuacion máxima posible de una prueba
+    float maxScore;
+
+    //Puntuaciñon actual
+    float score;
+
     //Suma 1 por cada pulsacion buena
     private int actualNumObj = 0;
 
@@ -35,6 +47,10 @@ public class PrecisionShootingTest : MonoBehaviour
         //Guardamos referencia al script para poder hacer spawn cuando se necesite
         manageObjetives = GetComponent<ManageObjetives>();
         startEvent = GetComponent<ClickToStart>();
+        //Calculamos la racha máxima
+        maxKills = testDuration * maxKPS;
+        //Calculamos la puntuación máxima
+        maxScore = calculateMaxScore();
     }
 
     // Update is called once per frame
@@ -75,6 +91,10 @@ public class PrecisionShootingTest : MonoBehaviour
     //Registra que un objetivo ha sido disparado por el jugador
     public void targetDestroyed(Target.TargetInfo info)
     {
+        float targetScore = (Mathf.Log10(actualNumObj + 1) / Mathf.Log10(maxKills)) * 10;
+        score += targetScore;
+
+        Debug.Log(targetScore + " " + score);
         //Suma 1 a las dianas golpeadas
         actualNumObj++;
 
@@ -82,7 +102,7 @@ public class PrecisionShootingTest : MonoBehaviour
         newObjetive(true);
 
         //Para comprobar la puntuacion
-        Debug.Log("Se han acertado: " + actualNumObj);
+        //Debug.Log("Se han acertado: " + actualNumObj);
     }
     //Registra el tiempo de vida de un objetivo se ha terminado 
     public void targetMissed(Target.TargetInfo info)
@@ -105,12 +125,22 @@ public class PrecisionShootingTest : MonoBehaviour
     void setTargetDificulty(GameObject target, bool lastTargetHit)
     {
         if (!lastTargetHit) actualNumObj -= (int) (actualNumObj*missPenalty);
-        float deep = transform.position.z * (Mathf.Log10(actualNumObj + 1) / Mathf.Log10(200));
-        float size = 0.4f/(Mathf.Log10(actualNumObj+1) / Mathf.Log10(200));
+        float deep = transform.position.z * (Mathf.Log10(actualNumObj + 1) / Mathf.Log10(maxKills));
+        float size = 0.4f/(Mathf.Log10(actualNumObj+1) / Mathf.Log10(maxKills));
         if (size > 1f) size = 1;
         target.GetComponent<Target>().setTargetInfo(size, deep, targetLifeTime);
 
-    }  
+    }
+    float calculateMaxScore()
+    {
+        float score = 0;
+        for (int i = 0; i < maxKills; i++)
+        {
+            score += (Mathf.Log10(i + 1) / Mathf.Log10(maxKills)) * 10;
+        }
+        Debug.Log(score);
+        return score;
+    }
 }
 
 

@@ -1549,11 +1549,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 5697810062888769349, guid: daba50240fd1a6e4aa56bf06c167dd84,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5697810062932031900, guid: daba50240fd1a6e4aa56bf06c167dd84,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1636,6 +1631,21 @@ PrefabInstance:
     - target: {fileID: 5333601988374474681, guid: daba50240fd1a6e4aa56bf06c167dd84,
         type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5697810062888769349, guid: daba50240fd1a6e4aa56bf06c167dd84,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5697810062932031891, guid: daba50240fd1a6e4aa56bf06c167dd84,
+        type: 3}
+      propertyPath: speed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5697810062932031891, guid: daba50240fd1a6e4aa56bf06c167dd84,
+        type: 3}
+      propertyPath: jumpForce
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
@@ -1930,12 +1940,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1162759938}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ec4f6855224d4d478f3e47962dcdf91, type: 3}
+  m_Script: {fileID: 11500000, guid: 571768a3d99fbf941b587e52b5600388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testDuration: 30
+  testDuration: 60
   targetLifeTime: 2
-  missPenalty: 0.75
+  missPenalty: 0.7
+  maxKPS: 2.8
+  maxSpeed: 15
 --- !u!114 &1162759940
 MonoBehaviour:
   m_ObjectHideFlags: 0

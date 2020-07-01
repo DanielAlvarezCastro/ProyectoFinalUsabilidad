@@ -2095,11 +2095,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 5697810062888769349, guid: daba50240fd1a6e4aa56bf06c167dd84,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5697810062932031900, guid: daba50240fd1a6e4aa56bf06c167dd84,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2183,6 +2178,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5697810062888769349, guid: daba50240fd1a6e4aa56bf06c167dd84,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5697810062932031891, guid: daba50240fd1a6e4aa56bf06c167dd84,
         type: 3}
@@ -2329,9 +2329,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ec4f6855224d4d478f3e47962dcdf91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testDuration: 30
+  testDuration: 60
   targetLifeTime: 2
   missPenalty: 0.75
+  maxKPS: 3.09
 --- !u!114 &1162759940
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -876,9 +876,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a423a9a0de80504c84cc16e0b824fdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testDuration: 30
+  testDuration: 60
   targetLifeTime: 0.5
   missPenalty: 0.75
+  maxKPS: 3.84
 --- !u!114 &494136119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3596,11 +3597,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 5697810062888769349, guid: daba50240fd1a6e4aa56bf06c167dd84,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5697810062932031900, guid: daba50240fd1a6e4aa56bf06c167dd84,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3684,6 +3680,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5697810062888769349, guid: daba50240fd1a6e4aa56bf06c167dd84,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5697810062932031891, guid: daba50240fd1a6e4aa56bf06c167dd84,
         type: 3}
