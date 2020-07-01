@@ -29,6 +29,7 @@ public class ReflexTest : MonoBehaviour
     //Para controlar cuando aparece el primer objetivo
     private bool firstSpawn = false;
 
+    float timeShoot = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,7 +44,10 @@ public class ReflexTest : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {   
+    {
+        //Prueba
+        //timeShoot += Time.deltaTime;
+
         //Cuando la prueba ha empezado:
         if(startEvent.IsTestStarted())
         {
@@ -56,30 +60,31 @@ public class ReflexTest : MonoBehaviour
             }
 
             //Mientras queden objetivos por salir
-            if (actualNumObj < maxNumObj + 1)
+            if (actualNumObj < maxNumObj)
             {
                 //Si hay objetivo en pantalla y se pulsa
                 if (objetiveActive & (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)))
                 {
+                    //Prueba
+                    //print(timeShoot);
+
                     actualNumObj++;
                     actualObjetive.SetActive(false);
-                    Tracker.instance.TrackEvent(new TrackerEvent(EventType.CLICK));
 
-                    if (actualNumObj < maxNumObj + 1)
+                    if (actualNumObj < maxNumObj)
                     {
-                        Debug.Log("Se han acertado: " + actualNumObj);
                         objetiveActive = false;
                         RandomTimeSpawn();
 
                         //Para comprobar la puntuacion
+                        Debug.Log("Se han acertado: " + actualNumObj);
                     }
                     //Cuando se han destruido todos los objetivos
                     else
                     {
                         startEvent.endTestText();
+                        GameObject.FindObjectOfType<GUIManager>().EndTest();
                         Debug.Log("La prueba ha terminado.");
-                        Tracker.instance.TrackEvent(new TrackerEvent(EventType.SESSION_END));
-                        Tracker.getInstance().EndTest();
                     }
                 }
                 //Si el probador pulsa pero no hay objetivo se le penaliza
@@ -103,11 +108,12 @@ public class ReflexTest : MonoBehaviour
     //Activa el objetivo en una nueva posicion
     void NextObjetive()
     {
+        //Prueba
+        //timeShoot = 0;
 
         objetiveActive = true;
         actualObjetive.SetActive(true);
         manageObjetives.RandomGOPosition(actualObjetive);
-        Tracker.instance.TrackEvent(new TrackerEvent(EventType.SPAWN));
     }
 }
 

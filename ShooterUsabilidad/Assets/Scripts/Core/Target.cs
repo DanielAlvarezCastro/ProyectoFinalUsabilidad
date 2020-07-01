@@ -10,6 +10,7 @@ public class Target : MonoBehaviour
         public float deepOffset;
         public float size;
         public float LifeTime;
+        public float speed;
     }
     //Game Manager de la escena
     GameObject testManager;
@@ -18,40 +19,43 @@ public class Target : MonoBehaviour
     /// Para la prueba de precisión
     /// </summary>
     //Profundidad a la que aparece el objetivo
-    public float deepOffset;
+    float deepOffset;
     //Multiplicador al tamaño de la diana (máximo 1)
-    public float sizeScale;
+    float sizeScale;
 
     /// <summary>
     /// Para la prueba de velocidad
     /// </summary>
     //Tiempo de vida máximo del objetivo
-    public float maxLifeTime;
-
-    /// <summary>
-    /// Para la prueba de objetivos móviles
-    /// </summary>
-    //Indica si es un objetivo móvil
-    public bool itMoves;
+    float maxLifeTime;
 
     float remainingLifeTime;
-    TargetInfo info;
+
+    protected TargetInfo info;
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         testManager = GameObject.Find("TestManager");
-        remainingLifeTime = maxLifeTime;
-        gameObject.transform.position += new Vector3(0,0,deepOffset);
-        gameObject.transform.localScale *= sizeScale;
         //Rellenamos el struct con la infrmación del objetivo
         info = new TargetInfo();
+    }
+
+    public void setTargetInfo(float _sizeScale, float _deepOffset, float _lifeTime)
+    {
+        sizeScale = _sizeScale;
         info.size = sizeScale;
-        info.LifeTime = maxLifeTime;
+        gameObject.transform.localScale *= sizeScale;
+        deepOffset = _deepOffset;
         info.deepOffset = deepOffset;
+        gameObject.transform.position += new Vector3(0, 0, deepOffset);
+        maxLifeTime = _lifeTime;
+        info.LifeTime = maxLifeTime;
+        remainingLifeTime = maxLifeTime;
+        info.speed = 1;
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         remainingLifeTime -= Time.deltaTime;
         if (remainingLifeTime <= 0) TargetLost();

@@ -909,7 +909,7 @@ MonoBehaviour:
   - PruebaMoviles
   - PruebaReflejos
   - PruebaDisparoPrecision
-  - PruebaVelocidad
+  - PruebaDisparoVelocidad
   - Resultados
 --- !u!4 &222008567
 Transform:

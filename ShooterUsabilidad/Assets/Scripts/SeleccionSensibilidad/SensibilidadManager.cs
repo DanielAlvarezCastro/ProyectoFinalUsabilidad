@@ -14,17 +14,20 @@ public class SensibilidadManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 0;
         Cursor.visible = true;
         sensibilidad = sensibilidadSlider.value * maxSensibilidad;
     }
 
     public void ShowPanel()
     {
+        Time.timeScale = 0;
         Cursor.visible = true;
         sensibilidadPanel.SetActive(true);
     }
     public void HidePanel()
     {
+        Time.timeScale = 1;
         UpdateSensibilidad();
         Cursor.visible = false;
         sensibilidadPanel.SetActive(false);
@@ -33,6 +36,7 @@ public class SensibilidadManager : MonoBehaviour
     public void StartGame()
     {
         Cursor.visible = false;
+        Time.timeScale = 1;
         GameSessionManager.Instance.SetSensitivity(sensibilidad);
         GameSessionManager.Instance.StartTest();
     }
