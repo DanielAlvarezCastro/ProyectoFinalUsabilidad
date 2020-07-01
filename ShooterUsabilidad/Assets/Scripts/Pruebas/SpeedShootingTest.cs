@@ -25,12 +25,6 @@ public class SpeedShootingTest : MonoBehaviour
     //Racha máxima posible a alcanzar en la prueba
     float maxKills;
 
-    //Puntuacion máxima posible de una prueba
-    float maxScore;
-
-    //Puntuaciñon actual
-    float score;
-
     //Suma 1 por cada pulsacion buena
     private int actualNumObj = 0;
 
@@ -51,7 +45,6 @@ public class SpeedShootingTest : MonoBehaviour
         //Calculamos la racha máxima
         maxKills = testDuration * maxKPS;
         //Calculamos la puntuación máxima
-        maxScore = calculateMaxScore();
     }
 
     // Update is called once per frame
@@ -100,18 +93,14 @@ public class SpeedShootingTest : MonoBehaviour
 
         Tracker.instance.TrackEvent(new TargetEvent(TargetEventType.DESTROYED,targetScore));
 
-        score += targetScore;
 
-        Debug.Log(targetScore +" "+ score);
+        Debug.Log(targetScore);
 
         //Suma 1 a las dianas golpeadas
         actualNumObj++;
 
         //Se coloca una nueva diana en una posicion random y se reinicia su tiempo de desaparicion
         newObjetive(true);
-
-        //Para comprobar la puntuacion
-        //Debug.Log("Se han acertado: " + actualNumObj);
     }
     //Registra el tiempo de vida de un objetivo se ha terminado 
     public void targetMissed(Target.TargetInfo info)
@@ -142,13 +131,4 @@ public class SpeedShootingTest : MonoBehaviour
 
     }
 
-    float calculateMaxScore()
-    {
-        float score=0;
-        for (int i = 0; i < maxKills; i++) {
-            score += (Mathf.Log10(i + 1) / Mathf.Log10(maxKills)) *10;
-        }
-        Debug.Log(score);
-        return score;
-    }
 }
