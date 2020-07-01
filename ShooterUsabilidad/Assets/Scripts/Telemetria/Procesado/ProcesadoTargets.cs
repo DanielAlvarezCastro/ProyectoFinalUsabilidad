@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ProcesadoTargets : IProcessing
 {
+    public float midScore = 250;
+    public float maxScore = 500;
+
     public override void Process(string sessionName)
     {
         List<TrackerEvent> events = Tracker.instance.GetTestEvents(sessionName);
@@ -61,5 +64,9 @@ public class ProcesadoTargets : IProcessing
          * 
          * 
          */
+        float aimTime = (totalPunt / maxScore);
+        aimTime = Mathf.Clamp(aimTime, 0, 1) * 100;
+        FindObjectOfType<AnalysisManager>().addStadistic(stat.precision, hit * completion * 100);
+        FindObjectOfType<AnalysisManager>().addStadistic(stat.aimTime, totalPunt);
     }
 }
