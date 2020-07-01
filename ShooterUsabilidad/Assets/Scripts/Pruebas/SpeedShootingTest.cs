@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PrecisionShootingTest : MonoBehaviour
+public class SpeedShootingTest : MonoBehaviour
 {
     private ManageObjetives manageObjetives;
 
@@ -55,7 +55,7 @@ public class PrecisionShootingTest : MonoBehaviour
             {
                 //Se aumenta el tiempo de la prueba y el del objetivo.
                 actualTestTime += Time.deltaTime;
-               
+
             }
             //Termina la prueba
             else
@@ -94,7 +94,7 @@ public class PrecisionShootingTest : MonoBehaviour
     }
 
     //Hace aparecer ua nueva diana y reinicia su tiempo de desaparicion FALTA AUMENTAR SU TAMAÑO SI ES NECESARIO
-    void  newObjetive(bool lastTargetHit)
+    void newObjetive(bool lastTargetHit)
     {
         actualObjetive = manageObjetives.dependientSpawn(actualObjetive.transform.position);
         setTargetDificulty(actualObjetive, lastTargetHit);
@@ -103,13 +103,12 @@ public class PrecisionShootingTest : MonoBehaviour
     //Método que calibra la dificultad de el objetivo siguiente depende de la prueba a la prueba en la que se encuentre
     void setTargetDificulty(GameObject target, bool lastTargetHit)
     {
-        if (!lastTargetHit) actualNumObj -= (int) (actualNumObj*missPenalty);
+        if (!lastTargetHit) actualNumObj -= (int)(actualNumObj * missPenalty);
         float deep = transform.position.z * (Mathf.Log10(actualNumObj + 1) / Mathf.Log10(200));
-        float size = 0.4f/(Mathf.Log10(actualNumObj+1) / Mathf.Log10(200));
-        if (size > 1f) size = 1;
-        target.GetComponent<Target>().setTargetInfo(size, deep, targetLifeTime);
+        float size = 1f;
+        float newTime = targetLifeTime / (Mathf.Log10(actualNumObj + 1) / Mathf.Log10(200))-targetLifeTime;
+        Debug.Log(newTime);
+        target.GetComponent<Target>().setTargetInfo(size, deep, newTime);
 
-    }  
+    }
 }
-
-

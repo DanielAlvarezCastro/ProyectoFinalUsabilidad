@@ -1321,6 +1321,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5697810062932031891, guid: daba50240fd1a6e4aa56bf06c167dd84,
+        type: 3}
+      propertyPath: speed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5697810062932031891, guid: daba50240fd1a6e4aa56bf06c167dd84,
+        type: 3}
+      propertyPath: jumpForce
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8963574102213295169, guid: daba50240fd1a6e4aa56bf06c167dd84, type: 3}
     - {fileID: 8581417427810217385, guid: daba50240fd1a6e4aa56bf06c167dd84, type: 3}
