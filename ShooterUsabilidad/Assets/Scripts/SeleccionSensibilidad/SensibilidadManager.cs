@@ -36,6 +36,7 @@ public class SensibilidadManager : MonoBehaviour
     public void StartGame()
     {
         Cursor.visible = false;
+        Time.timeScale = 1;
         GameSessionManager.Instance.SetSensitivity(sensibilidad);
         GameSessionManager.Instance.StartTest();
     }

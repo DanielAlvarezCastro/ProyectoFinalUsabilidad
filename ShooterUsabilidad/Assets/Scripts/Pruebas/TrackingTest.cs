@@ -66,7 +66,8 @@ public class TrackingTest : MonoBehaviour
             CancelInvoke();
             dirVec = Vector3.zero;
             GameObject.FindObjectOfType<TrackingScript>().endTest();
-            Invoke("changeScene", changeSceneTime);
+            GameObject.FindObjectOfType<GUIManager>().EndTest();
+            //Invoke("changeScene", changeSceneTime);
         }
     }
     void changeScene()

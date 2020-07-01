@@ -84,9 +84,17 @@ public class GameSessionManager : MonoBehaviour
     }
     public void GoToNextScene()
     {
-        currentScene++;
-        if (currentScene >= sceneNames.Length) currentScene = 0;
-        SceneManager.LoadScene(sceneNames[currentScene]);
+        //Si es un test individual al terminar vuelve al main menu
+        if (!completeTest)
+        {
+            SceneManager.LoadScene(sceneNames[0]);
+        }
+        else
+        {
+            currentScene++;
+            if (currentScene >= sceneNames.Length) currentScene = 0;
+            SceneManager.LoadScene(sceneNames[currentScene]);
+        }
     }
     public void StartTest()
     {
