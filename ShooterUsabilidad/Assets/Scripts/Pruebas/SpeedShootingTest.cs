@@ -75,6 +75,7 @@ public class SpeedShootingTest : MonoBehaviour
                 Tracker.instance.TrackEvent(Tracker.instance.GenerateTrackerEvent(EventType.SESSION_END));
                 Tracker.getInstance().EndTest();
                 GameObject.FindObjectOfType<GUIManager>().EndTest();
+                FindObjectOfType<TestStart>().Proccess();
                 Debug.Log("La prueba ha terminado.");
             }
         }
