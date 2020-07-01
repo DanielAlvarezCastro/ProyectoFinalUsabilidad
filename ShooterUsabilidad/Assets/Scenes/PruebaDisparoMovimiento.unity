@@ -243,90 +243,6 @@ Transform:
   m_Father: {fileID: 1871511132}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &180225703
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 180225706}
-  - component: {fileID: 180225705}
-  - component: {fileID: 180225704}
-  m_Layer: 0
-  m_Name: TelemetryManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &180225704
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 180225703}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f19458ef5afb72e44ab2a6a1e1b73b9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  score: 0
-  midScore: 510.14
-  maxScore: 1224.5
---- !u!114 &180225705
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 180225703}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77199654fa6e30f428afa671d4dc3510, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  testName: MovementTest
-  proccesing: {fileID: 180225704}
-  eventOptions:
-    values:
-    - typeString: SESSION_START
-      type: 0
-      activated: 1
-    - typeString: SESSION_END
-      type: 1
-      activated: 1
-    - typeString: SHOOT
-      type: 2
-      activated: 1
-    - typeString: AIM
-      type: 3
-      activated: 0
-    - typeString: SPAWN
-      type: 4
-      activated: 0
-    - typeString: CLICK
-      type: 5
-      activated: 0
-    - typeString: TARGET
-      type: 6
-      activated: 1
---- !u!4 &180225706
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 180225703}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 543.7557, y: 209.60136, z: 276.72345}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 14
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &213745265
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,6 +609,8 @@ GameObject:
   m_Component:
   - component: {fileID: 478862649}
   - component: {fileID: 478862648}
+  - component: {fileID: 478862651}
+  - component: {fileID: 478862650}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -735,6 +653,58 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &478862650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478862647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19458ef5afb72e44ab2a6a1e1b73b9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 0
+  midScore: 250
+  maxScore: 500
+--- !u!114 &478862651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478862647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77199654fa6e30f428afa671d4dc3510, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  testName: MovementTest
+  proccesing: {fileID: 478862650}
+  eventOptions:
+    values:
+    - typeString: SESSION_START
+      type: 0
+      activated: 1
+    - typeString: SESSION_END
+      type: 1
+      activated: 1
+    - typeString: SHOOT
+      type: 2
+      activated: 1
+    - typeString: AIM
+      type: 3
+      activated: 0
+    - typeString: SPAWN
+      type: 4
+      activated: 0
+    - typeString: CLICK
+      type: 5
+      activated: 0
+    - typeString: TARGET
+      type: 6
+      activated: 1
 --- !u!1 &555243757
 GameObject:
   m_ObjectHideFlags: 0
@@ -1998,7 +1968,8 @@ MonoBehaviour:
   testDuration: 60
   targetLifeTime: 2
   missPenalty: 0.7
-  maxKPS: 2.8
+  maxKPS: 2.53
+  medKPS: 1.26
   maxSpeed: 15
 --- !u!114 &1162759940
 MonoBehaviour:

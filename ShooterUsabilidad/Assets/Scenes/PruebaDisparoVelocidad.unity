@@ -876,10 +876,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a423a9a0de80504c84cc16e0b824fdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testDuration: 10
+  testDuration: 60
   targetLifeTime: 0.5
   missPenalty: 0.75
-  maxKPS: 3.84
+  maxKPS: 3.77
+  medKPS: 1.8
 --- !u!114 &494136119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1646,90 +1647,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 922908136}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1003227324
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1003227327}
-  - component: {fileID: 1003227326}
-  - component: {fileID: 1003227325}
-  m_Layer: 0
-  m_Name: TelemetryManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1003227325
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1003227324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f19458ef5afb72e44ab2a6a1e1b73b9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  score: 0
-  midScore: 739.53
-  maxScore: 1859.46
---- !u!114 &1003227326
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1003227324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77199654fa6e30f428afa671d4dc3510, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  testName: SpeedTest
-  proccesing: {fileID: 1003227325}
-  eventOptions:
-    values:
-    - typeString: SESSION_START
-      type: 0
-      activated: 1
-    - typeString: SESSION_END
-      type: 1
-      activated: 1
-    - typeString: SHOOT
-      type: 2
-      activated: 1
-    - typeString: AIM
-      type: 3
-      activated: 0
-    - typeString: SPAWN
-      type: 4
-      activated: 0
-    - typeString: CLICK
-      type: 5
-      activated: 0
-    - typeString: TARGET
-      type: 6
-      activated: 1
---- !u!4 &1003227327
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1003227324}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 543.7557, y: 209.60136, z: 276.72345}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 14
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1074200335
 GameObject:
   m_ObjectHideFlags: 0
@@ -2153,6 +2070,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1164473606}
   - component: {fileID: 1164473605}
+  - component: {fileID: 1164473604}
+  - component: {fileID: 1164473607}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2160,6 +2079,43 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1164473604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164473603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77199654fa6e30f428afa671d4dc3510, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  testName: SpeedTest
+  proccesing: {fileID: 1164473607}
+  eventOptions:
+    values:
+    - typeString: SESSION_START
+      type: 0
+      activated: 1
+    - typeString: SESSION_END
+      type: 1
+      activated: 1
+    - typeString: SHOOT
+      type: 2
+      activated: 1
+    - typeString: AIM
+      type: 3
+      activated: 0
+    - typeString: SPAWN
+      type: 4
+      activated: 0
+    - typeString: CLICK
+      type: 5
+      activated: 0
+    - typeString: TARGET
+      type: 6
+      activated: 1
 --- !u!114 &1164473605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2195,6 +2151,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1164473607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164473603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19458ef5afb72e44ab2a6a1e1b73b9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 0
+  midScore: 250
+  maxScore: 500
 --- !u!1 &1194782987
 GameObject:
   m_ObjectHideFlags: 0

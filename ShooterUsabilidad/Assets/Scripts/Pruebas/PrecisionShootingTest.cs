@@ -25,12 +25,6 @@ public class PrecisionShootingTest : MonoBehaviour
     //Racha máxima posible a alcanzar en la prueba
     float maxKills;
 
-    //Puntuacion máxima posible de una prueba
-    float maxScore;
-
-    //Puntuaciñon actual
-    float score;
-
     //Suma 1 por cada pulsacion buena
     private int actualNumObj = 0;
 
@@ -52,7 +46,6 @@ public class PrecisionShootingTest : MonoBehaviour
         //Calculamos la racha máxima
         maxKills = testDuration * maxKPS;
         //Calculamos la puntuación máxima
-        maxScore = calculateMaxScore();
     }
 
     // Update is called once per frame
@@ -99,17 +92,13 @@ public class PrecisionShootingTest : MonoBehaviour
     public void targetDestroyed(Target.TargetInfo info)
     {
         float targetScore = (Mathf.Log10(actualNumObj + 1) / Mathf.Log10(maxKills)) * 10;
-        score += targetScore;
         Tracker.instance.TrackEvent(new TargetEvent(TargetEventType.DESTROYED, targetScore));
-        Debug.Log(targetScore + " " + score);
+        Debug.Log(targetScore);
         //Suma 1 a las dianas golpeadas
         actualNumObj++;
 
         //Se coloca una nueva diana en una posicion random y se reinicia su tiempo de desaparicion
         newObjetive(true);
-
-        //Para comprobar la puntuacion
-        //Debug.Log("Se han acertado: " + actualNumObj);
     }
     //Registra el tiempo de vida de un objetivo se ha terminado 
     public void targetMissed(Target.TargetInfo info)
@@ -138,16 +127,6 @@ public class PrecisionShootingTest : MonoBehaviour
         if (size > 1f) size = 1;
         target.GetComponent<Target>().setTargetInfo(size, deep, targetLifeTime);
 
-    }
-    float calculateMaxScore()
-    {
-        float score = 0;
-        for (int i = 0; i < maxKills; i++)
-        {
-            score += (Mathf.Log10(i + 1) / Mathf.Log10(maxKills)) * 10;
-        }
-        Debug.Log(score);
-        return score;
     }
 }
 
