@@ -40,6 +40,8 @@ public class PrecisionShootingTest : MonoBehaviour
     //Para controlar cuando aparece el primer objetivo
     private bool firstSpawn = false;
 
+    bool finished = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -74,13 +76,16 @@ public class PrecisionShootingTest : MonoBehaviour
                
             }
             //Termina la prueba
-            else
+            else if(!finished)
             {
+                finished = true;
                 startEvent.endTestText();
                 Tracker.instance.TrackEvent(Tracker.instance.GenerateTrackerEvent(EventType.SESSION_END));
                 Tracker.getInstance().EndTest();
                 GameObject.FindObjectOfType<GUIManager>().EndTest();
                 Debug.Log("La prueba ha terminado.");
+
+                FindObjectOfType<TestStart>().Proccess();
             }
         }
     }

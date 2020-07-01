@@ -43,6 +43,8 @@ public class MovementTargetsTest : MonoBehaviour
     //Velocidad máxima de los objetivos
     public float maxSpeed;
 
+    bool finished = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -76,8 +78,9 @@ public class MovementTargetsTest : MonoBehaviour
 
             }
             //Termina la prueba
-            else
+            else if(!finished)
             {
+                finished = true;
                 startEvent.endTestText();
                 Tracker.instance.TrackEvent(Tracker.instance.GenerateTrackerEvent(EventType.SESSION_END));
                 Tracker.getInstance().EndTest();

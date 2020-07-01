@@ -761,8 +761,6 @@ GameObject:
   m_Component:
   - component: {fileID: 478862649}
   - component: {fileID: 478862648}
-  - component: {fileID: 478862651}
-  - component: {fileID: 478862650}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -805,56 +803,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &478862650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 478862647}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f19458ef5afb72e44ab2a6a1e1b73b9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  score: 0
---- !u!114 &478862651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 478862647}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77199654fa6e30f428afa671d4dc3510, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  testName: PrecisionTest
-  proccesing: {fileID: 0}
-  eventOptions:
-    values:
-    - typeString: SESSION_START
-      type: 0
-      activated: 1
-    - typeString: SESSION_END
-      type: 1
-      activated: 1
-    - typeString: SHOOT
-      type: 2
-      activated: 1
-    - typeString: AIM
-      type: 3
-      activated: 0
-    - typeString: SPAWN
-      type: 4
-      activated: 0
-    - typeString: CLICK
-      type: 5
-      activated: 0
-    - typeString: TARGET
-      type: 6
-      activated: 1
 --- !u!1 &515801754
 GameObject:
   m_ObjectHideFlags: 0
@@ -2475,6 +2423,90 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1186886157}
   m_CullTransparentMesh: 0
+--- !u!1 &1228702098
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1228702101}
+  - component: {fileID: 1228702100}
+  - component: {fileID: 1228702099}
+  m_Layer: 0
+  m_Name: TalemetryManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1228702099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1228702098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19458ef5afb72e44ab2a6a1e1b73b9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 0
+  midScore: 459.06
+  maxScore: 1106.79
+--- !u!114 &1228702100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1228702098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77199654fa6e30f428afa671d4dc3510, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  testName: PrecisionTest
+  proccesing: {fileID: 1228702099}
+  eventOptions:
+    values:
+    - typeString: SESSION_START
+      type: 0
+      activated: 1
+    - typeString: SESSION_END
+      type: 1
+      activated: 1
+    - typeString: SHOOT
+      type: 2
+      activated: 1
+    - typeString: AIM
+      type: 3
+      activated: 0
+    - typeString: SPAWN
+      type: 4
+      activated: 0
+    - typeString: CLICK
+      type: 5
+      activated: 0
+    - typeString: TARGET
+      type: 6
+      activated: 1
+--- !u!4 &1228702101
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1228702098}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 543.7557, y: 209.60136, z: 276.72345}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1245795226
 GameObject:
   m_ObjectHideFlags: 0

@@ -64,8 +64,19 @@ public class ProcesadoTargets : IProcessing
          * 
          * 
          */
-        float aimTime = (totalPunt / maxScore);
-        aimTime = Mathf.Clamp(aimTime, 0, 1) * 100;
+        float aimTime = totalPunt;
+
+        if (aimTime >= maxScore)
+            aimTime = 100;
+        else if (aimTime > midScore)
+            aimTime = 100 - 50.0f * ((aimTime - midScore) / (maxScore - midScore));
+        else if (aimTime > 0)
+            aimTime = 50.0f * (aimTime / midScore);
+        else
+            aimTime = 0;
+
+        Debug.Log("Aim Time Score: " + aimTime);
+
         FindObjectOfType<AnalysisManager>().addStadistic(stat.precision, hit * completion * 100);
         FindObjectOfType<AnalysisManager>().addStadistic(stat.aimTime, totalPunt);
     }

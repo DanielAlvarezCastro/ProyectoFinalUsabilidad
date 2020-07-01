@@ -705,9 +705,7 @@ GameObject:
   m_Component:
   - component: {fileID: 478862649}
   - component: {fileID: 478862648}
-  - component: {fileID: 478862650}
   - component: {fileID: 478862651}
-  - component: {fileID: 478862652}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -750,34 +748,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &478862650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 478862647}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77199654fa6e30f428afa671d4dc3510, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  testName: TrackingTest
-  proccesing: {fileID: 478862652}
-  eventOptions:
-    values:
-    - typeString: SESSION_START
-      type: 0
-      activated: 1
-    - typeString: SESSION_END
-      type: 1
-      activated: 1
-    - typeString: SHOOT
-      type: 2
-      activated: 0
-    - typeString: AIM
-      type: 3
-      activated: 1
 --- !u!114 &478862651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -806,20 +776,6 @@ MonoBehaviour:
   aimTimeTotalPond: 30
   reactionTimeTotalPond: 15
   trackingTotalPond: 25
---- !u!114 &478862652
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 478862647}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 699e6912382f46b46b724c923a564cf4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  score: 0
-  notaFinal: 0
 --- !u!1 &555243757
 GameObject:
   m_ObjectHideFlags: 0
@@ -2338,6 +2294,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5697810062888769349, guid: daba50240fd1a6e4aa56bf06c167dd84,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5697810062932031900, guid: daba50240fd1a6e4aa56bf06c167dd84,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2421,11 +2382,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5697810062888769349, guid: daba50240fd1a6e4aa56bf06c167dd84,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5697810062932031891, guid: daba50240fd1a6e4aa56bf06c167dd84,
         type: 3}
@@ -3251,6 +3207,80 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1558811628}
   m_CullTransparentMesh: 0
+--- !u!1 &1683162316
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1683162317}
+  - component: {fileID: 1683162319}
+  - component: {fileID: 1683162318}
+  m_Layer: 0
+  m_Name: TelemetryManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1683162317
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683162316}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 543.7557, y: 209.60136, z: 276.72345}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1683162318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683162316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 699e6912382f46b46b724c923a564cf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 0
+  notaFinal: 0
+--- !u!114 &1683162319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683162316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77199654fa6e30f428afa671d4dc3510, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  testName: TrackingTest
+  proccesing: {fileID: 1683162318}
+  eventOptions:
+    values:
+    - typeString: SESSION_START
+      type: 0
+      activated: 1
+    - typeString: SESSION_END
+      type: 1
+      activated: 1
+    - typeString: SHOOT
+      type: 2
+      activated: 0
+    - typeString: AIM
+      type: 3
+      activated: 1
 --- !u!1 &1856601157
 GameObject:
   m_ObjectHideFlags: 0
