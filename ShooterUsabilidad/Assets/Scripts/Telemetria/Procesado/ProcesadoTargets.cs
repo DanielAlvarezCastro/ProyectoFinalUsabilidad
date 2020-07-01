@@ -16,6 +16,7 @@ public class ProcesadoTargets : IProcessing
         float totalPunt = 0;
         int numDisparos = 0;
         int numAciertos = 0;
+        int numFallos = 0;
 
 
 
@@ -30,11 +31,13 @@ public class ProcesadoTargets : IProcessing
             {
                 TargetEvent targetEvent = (TargetEvent)e;
 
-                if(targetEvent.targetEventType == TargetEventType.DESTROYED)
+                if (targetEvent.targetEventType == TargetEventType.DESTROYED)
                 {
                     totalPunt += targetEvent.punt;
                     numAciertos++;
                 }
+                else
+                    numFallos++;
             }
             else if (e.eventType == EventType.SHOOT)
             {
@@ -44,6 +47,19 @@ public class ProcesadoTargets : IProcessing
 
         Debug.Log("Total time: " + totalTime.ToString(@"mm\:ss\.fff") + " / " + totalTime.ToString(@"mm\:ss\.fff"));
         Debug.Log("Total punt: " + totalPunt);
-        Debug.Log("Hit% " + ((float)numAciertos / numDisparos) * 100 + "%");
+        float completion = ((float)(numAciertos) / (numAciertos + numFallos));
+        float hit = ((float)(numAciertos) / (numDisparos));
+        Debug.Log("Completion% " + completion * 100 + "%");
+        Debug.Log("Hit% " + hit * 100 + "%");
+        Debug.Log("Precision score: " + hit * completion * 100 + "%");
+        /*
+         * Diparas 1. Aciertas 1. Spawnean 10. -> 10%
+         * Disparas 10. Aciertas 5. Spawnean 10 ->50%
+         * DIsparas 10. Aciertas 1. Spawnean 10 -> 10% 
+         * 
+         * Acertados / Disparados. 
+         * 
+         * 
+         */
     }
 }

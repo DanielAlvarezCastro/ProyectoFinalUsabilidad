@@ -25,14 +25,11 @@ public class TestStart : MonoBehaviour
         Debug.Log("Starting test " + testName);
         Tracker.getInstance().StartTest(testName,eventOptions.values);
     }
-    private void Update()
+
+
+    public void Proccess()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            proccesing.Process(testName);
-        }
-
+        proccesing.Process(testName);
     }
-
 
 }
