@@ -60,7 +60,7 @@ public class ReflexTest : MonoBehaviour
             }
 
             //Mientras queden objetivos por salir
-            if (actualNumObj < maxNumObj)
+            if (actualNumObj < maxNumObj + 1 )
             {
                 //Si hay objetivo en pantalla y se pulsa
                 if (objetiveActive & (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)))
@@ -71,9 +71,10 @@ public class ReflexTest : MonoBehaviour
                     actualNumObj++;
                     actualObjetive.SetActive(false);
 
-                    if (actualNumObj < maxNumObj)
+                    if (actualNumObj < maxNumObj + 1)
                     {
                         objetiveActive = false;
+                        Tracker.instance.TrackEvent(new TrackerEvent(EventType.CLICK));
                         RandomTimeSpawn();
 
                         //Para comprobar la puntuacion
@@ -82,17 +83,19 @@ public class ReflexTest : MonoBehaviour
                     //Cuando se han destruido todos los objetivos
                     else
                     {
+                        Tracker.instance.TrackEvent(new TrackerEvent(EventType.SESSION_END));
+                        Tracker.getInstance().EndTest();
                         startEvent.endTestText();
                         GameObject.FindObjectOfType<GUIManager>().EndTest();
                         Debug.Log("La prueba ha terminado.");
                     }
                 }
                 //Si el probador pulsa pero no hay objetivo se le penaliza
-                else if (!objetiveActive && (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)))
+                /*else if (!objetiveActive && (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)))
                 {
                     failClick++;
                     Debug.Log("Numero de fallos: " + failClick);
-                }
+                }*/
             }
         }
     }
@@ -101,7 +104,7 @@ public class ReflexTest : MonoBehaviour
     void RandomTimeSpawn()
     {
         float newRandomTime = Random.Range(minTimeInterval, maxTimeInterval);
-   
+        
         Invoke("NextObjetive", newRandomTime);
     }
 
@@ -110,7 +113,7 @@ public class ReflexTest : MonoBehaviour
     {
         //Prueba
         //timeShoot = 0;
-
+        Tracker.instance.TrackEvent(new TrackerEvent(EventType.SPAWN));
         objetiveActive = true;
         actualObjetive.SetActive(true);
         manageObjetives.RandomGOPosition(actualObjetive);
