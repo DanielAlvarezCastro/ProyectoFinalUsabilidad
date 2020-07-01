@@ -24,7 +24,7 @@ public class EventOption
 
 
 [System.Serializable]
-public enum EventType { SESSION_START, SESSION_END,SHOOT,AIM, LENGTH}
+public enum EventType { SESSION_START, SESSION_END,SHOOT,AIM,SPAWN,CLICK, LENGTH}
 
 public class TrackerEvent
 {

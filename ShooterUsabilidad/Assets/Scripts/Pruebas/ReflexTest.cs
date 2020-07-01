@@ -56,27 +56,30 @@ public class ReflexTest : MonoBehaviour
             }
 
             //Mientras queden objetivos por salir
-            if (actualNumObj < maxNumObj)
+            if (actualNumObj < maxNumObj + 1)
             {
                 //Si hay objetivo en pantalla y se pulsa
                 if (objetiveActive & (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)))
                 {
                     actualNumObj++;
                     actualObjetive.SetActive(false);
+                    Tracker.instance.TrackEvent(new TrackerEvent(EventType.CLICK));
 
-                    if (actualNumObj < maxNumObj)
+                    if (actualNumObj < maxNumObj + 1)
                     {
+                        Debug.Log("Se han acertado: " + actualNumObj);
                         objetiveActive = false;
                         RandomTimeSpawn();
 
                         //Para comprobar la puntuacion
-                        Debug.Log("Se han acertado: " + actualNumObj);
                     }
                     //Cuando se han destruido todos los objetivos
                     else
                     {
                         startEvent.endTestText();
                         Debug.Log("La prueba ha terminado.");
+                        Tracker.instance.TrackEvent(new TrackerEvent(EventType.SESSION_END));
+                        Tracker.getInstance().EndTest();
                     }
                 }
                 //Si el probador pulsa pero no hay objetivo se le penaliza
@@ -100,9 +103,11 @@ public class ReflexTest : MonoBehaviour
     //Activa el objetivo en una nueva posicion
     void NextObjetive()
     {
+
         objetiveActive = true;
         actualObjetive.SetActive(true);
         manageObjetives.RandomGOPosition(actualObjetive);
+        Tracker.instance.TrackEvent(new TrackerEvent(EventType.SPAWN));
     }
 }
 

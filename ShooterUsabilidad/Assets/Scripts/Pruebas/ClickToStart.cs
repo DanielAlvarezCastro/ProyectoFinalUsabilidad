@@ -40,12 +40,13 @@ public class ClickToStart : MonoBehaviour
                 timeRemaining -= Time.deltaTime;
                 DisplayTime(timeRemaining);
             }
-            else
+            else if ( !testStarted )
             {
                 timeRemaining = 0;
                 timerIsRunning = false;
                 testStarted = true;
                 timeText.enabled = false;
+                Tracker.getInstance().TrackEvent(new TrackerEvent(EventType.SESSION_START));
             }
         }
 

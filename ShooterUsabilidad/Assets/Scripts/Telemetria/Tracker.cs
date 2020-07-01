@@ -10,6 +10,7 @@ public class Tracker : MonoBehaviour
 {
 
     static public Tracker instance = null;
+    
 
     //General
     [Header("General")]
@@ -34,12 +35,13 @@ public class Tracker : MonoBehaviour
     public bool seconds;
     public bool milliseconds;
     //Inicializaciones etc
+    public EventOption[] options;
 
     private void Awake()
     {
-        if (instance != null)
+        if (instance != null && instance != this)
             Destroy(this);
-        else
+        else if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(instance.gameObject);
@@ -101,7 +103,8 @@ public class Tracker : MonoBehaviour
 
     public void TrackEvent(TrackerEvent e)
     {
-        if(testing)
+        int eventInt = (int)e.eventType;
+        if(testing && options != null && eventInt < options.Length && options[eventInt].activated)
             persistenceObject.Send(e);
     }
 
@@ -111,9 +114,10 @@ public class Tracker : MonoBehaviour
     }
 
 
-    public void StartTest(string testName)
+    public void StartTest(string testName,EventOption[] options)
     {
         persistenceObject.NewSession(testName);
+        this.options = options;
         testing = true;
     }
 
@@ -159,9 +163,9 @@ public class Tracker : MonoBehaviour
             {
                 Debug.Log("Creating new Tracker instance");
                 instance = new GameObject(typeof(Tracker).Name).AddComponent<Tracker>();
-                instance.Init();
+                DontDestroyOnLoad(instance.gameObject);
             }
-            DontDestroyOnLoad(instance.gameObject);
+            instance.Init();
 
         }
         return instance;
