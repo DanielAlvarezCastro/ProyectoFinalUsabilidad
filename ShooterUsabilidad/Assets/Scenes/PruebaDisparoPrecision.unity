@@ -818,6 +818,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
+  midScore: 250
+  maxScore: 500
 --- !u!114 &478862651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2352,7 +2354,7 @@ MonoBehaviour:
   testDuration: 60
   targetLifeTime: 2
   missPenalty: 0.75
-  maxKPS: 3.09
+  maxKPS: 2.3
 --- !u!114 &1162759940
 MonoBehaviour:
   m_ObjectHideFlags: 0
