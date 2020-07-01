@@ -5,7 +5,7 @@ using UnityEngine;
 public class MovingTarget : Target
 {
     //Multiplicador a la velocidad del objetivo
-    float speed=3;
+    float speed;
 
     //Origen de la oscilación
     Vector3 origin;
@@ -36,7 +36,7 @@ public class MovingTarget : Target
 
         if (destination.y - maxDistance < minLimit.y) destination.y += Random.Range(minDistance, maxDistance);
         else if (destination.y + maxDistance > maxLimit.y) destination.y -= Random.Range(minDistance, maxDistance);
-        if (Random.Range(0f, 1f) < 0.5f) destination.y -= Random.Range(minDistance, maxDistance);
+        else if (Random.Range(0f, 1f) < 0.5f) destination.y -= Random.Range(minDistance, maxDistance);
         else destination.y += Random.Range(minDistance, maxDistance);
 
     }
@@ -47,12 +47,12 @@ public class MovingTarget : Target
         base.Update();
         if (!direction)
         {
-            gameObject.transform.Translate((origin - destination).normalized * speed* Time.deltaTime);
+            gameObject.transform.Translate((destination - origin).normalized * speed* Time.deltaTime);
             if (Vector3.Distance(gameObject.transform.position, destination) < 0.1f) direction = true;
 
         }
         else {
-            gameObject.transform.Translate((destination - origin).normalized * speed * Time.deltaTime);
+            gameObject.transform.Translate((origin - destination).normalized * speed * Time.deltaTime);
             if (Vector3.Distance(gameObject.transform.position, origin) < 0.1f) direction = false;
         }
     }
