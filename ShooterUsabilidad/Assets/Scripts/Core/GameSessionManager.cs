@@ -92,12 +92,13 @@ public class GameSessionManager : MonoBehaviour
         else
         {
             currentScene++;
-            if (currentScene >= sceneNames.Length) currentScene = 0;
+            if (currentScene > sceneNames.Length) currentScene = 0;
             SceneManager.LoadScene(sceneNames[currentScene]);
         }
     }
     public void StartTest()
     {
+        currentScene = 2;
         SceneManager.LoadScene(sceneNames[selectedTest+1]);
     }
     public void EndGame()

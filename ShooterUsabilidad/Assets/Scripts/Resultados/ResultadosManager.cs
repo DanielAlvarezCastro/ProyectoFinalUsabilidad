@@ -4,12 +4,12 @@ using UnityEngine;
 using TMPro;
 public class ResultadosManager : MonoBehaviour
 {
-    TextMeshProUGUI nombreText;
-    TextMeshProUGUI precisionText;
-    TextMeshProUGUI tiempoApuntadoText;
-    TextMeshProUGUI velReaccionText;
-    TextMeshProUGUI trackingText;
-    TextMeshProUGUI notaText;
+    public TextMeshProUGUI nombreText;
+    public TextMeshProUGUI precisionText;
+    public TextMeshProUGUI tiempoApuntadoText;
+    public TextMeshProUGUI velReaccionText;
+    public TextMeshProUGUI trackingText;
+    public TextMeshProUGUI notaText;
     // Start is called before the first frame update
     void Start()
     {

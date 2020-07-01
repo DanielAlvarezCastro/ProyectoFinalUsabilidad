@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PruebaDisparoMovimiento.unity
     guid: fcf1c8d9209568342b19a83e0425fdc4
+  - enabled: 1
+    path: Assets/Scenes/Resultados.unity
+    guid: 86d4131f9bad0e84594aa20ffc94d019
   m_configObjects: {}

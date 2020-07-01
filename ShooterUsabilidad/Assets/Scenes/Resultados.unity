@@ -2410,6 +2410,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 234f38a3fa695494e81b49d19c98c6a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nombreText: {fileID: 36610367}
+  precisionText: {fileID: 122004624}
+  tiempoApuntadoText: {fileID: 1101293147}
+  velReaccionText: {fileID: 564738933}
+  trackingText: {fileID: 124187172}
+  notaText: {fileID: 672791364}
 --- !u!4 &1521478096
 Transform:
   m_ObjectHideFlags: 0
