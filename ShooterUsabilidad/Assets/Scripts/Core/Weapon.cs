@@ -65,6 +65,9 @@ public class Weapon : MonoBehaviour
 
     Slider recoilSlider;
 
+    //Para escopetas
+    bool justHit = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -253,6 +256,7 @@ public class Weapon : MonoBehaviour
         float angle = 0;
 
         Ray ray;
+        justHit = false;
         for (int x = 0; x < bulletsPerShot; x++)
         {
             //Genera una dirección aleatoria entre el radio de desviación actual
@@ -278,13 +282,17 @@ public class Weapon : MonoBehaviour
                 if (Physics.Raycast(ray, out hit, 100))
                 {
                     //Mensaje de daño CUTRE
-                    if (hit.collider.GetComponent<Enemy>() != null)
+                    /*if (hit.collider.GetComponent<Enemy>() != null)
                         hit.collider.GetComponent<Enemy>().getDamage(damagePerBullet);
                     if (hit.collider.GetComponent<Diana>() != null)
                         hit.collider.GetComponent<Diana>().hitPoint(hit.point);
+                    */
                     //Una bala ha colisionado con un target
-                    if (hit.collider.GetComponent<Target>() != null)
+                    if (!justHit && hit.collider.GetComponent<Target>() != null)
+                    {
+                        justHit = true;
                         hit.collider.GetComponent<Target>().TargetHit();
+                    }
 
 
                     bulletHitInst(hit);
