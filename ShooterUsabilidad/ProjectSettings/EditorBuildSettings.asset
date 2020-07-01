@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PruebaDisparoPrecision.unity
     guid: 2d95ea65b5ce23b48afbaafbce7f78c9
+  - enabled: 1
+    path: Assets/Scenes/PruebaDisparoVelocidad.unity
+    guid: abecd307428d2524d95c6a03748c7bf8
   m_configObjects: {}
