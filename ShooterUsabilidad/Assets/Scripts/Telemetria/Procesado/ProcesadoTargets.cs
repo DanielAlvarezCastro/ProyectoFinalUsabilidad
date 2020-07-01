@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProcesadoReflejos : IProcessing
+public class ProcesadoTargets : IProcessing
 {
-    public int NUM_TARGETS = 5;
-
     public override void Process(string sessionName)
     {
         List<TrackerEvent> events = Tracker.instance.GetTestEvents(sessionName);
@@ -15,12 +13,11 @@ public class ProcesadoReflejos : IProcessing
         System.DateTime starTime = System.DateTime.MinValue;
         System.TimeSpan totalTime = System.TimeSpan.Zero;
 
-        System.DateTime lastTargetEvent = System.DateTime.MinValue;
-        System.TimeSpan totalReactionTime = System.TimeSpan.Zero;
-        int failCount = 0;
+        float totalPunt = 0;
+        int numDisparos = 0;
+        int numAciertos = 0;
 
 
-        bool isIn = false; //Para evitar dobles
 
         foreach (TrackerEvent e in events)
         {
@@ -29,29 +26,24 @@ public class ProcesadoReflejos : IProcessing
             else if (e.eventType == EventType.SESSION_END)
                 totalTime = (e.time - starTime);
             //Si es un evento de tipo AIM, lo procesamos
-            if (e.eventType == EventType.SPAWN)
+            if (e.eventType == EventType.TARGET)
             {
+                TargetEvent targetEvent = (TargetEvent)e;
 
-                    lastTargetEvent = e.time;
-
-                    isIn = false;
-            }
-            else if (e.eventType == EventType.CLICK)
-            {
-                if (lastTargetEvent != System.DateTime.MinValue)
+                if(targetEvent.targetEventType == TargetEventType.DESTROYED)
                 {
-                    totalReactionTime += (e.time - lastTargetEvent);
-                    lastTargetEvent = System.DateTime.MinValue;
+                    totalPunt += targetEvent.punt;
+                    numAciertos++;
                 }
-                else
-                    failCount++;
-
-            }      
+            }
+            else if (e.eventType == EventType.SHOOT)
+            {
+                numDisparos++;
+            }
         }
 
         Debug.Log("Total time: " + totalTime.ToString(@"mm\:ss\.fff") + " / " + totalTime.ToString(@"mm\:ss\.fff"));
-        Debug.Log("Average aim time: " + (totalReactionTime.TotalMilliseconds / NUM_TARGETS)); 
+        Debug.Log("Total punt: " + totalPunt);
+        Debug.Log("Hit% " + ((float)numAciertos / numDisparos) * 100 + "%");
     }
-
-
 }

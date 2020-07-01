@@ -19,6 +19,8 @@ public class JSONSerializer : ISerializer
         {
             case EventType.AIM:
                 return JsonConvert.DeserializeObject<AimEvent>(s);
+            case EventType.TARGET:
+                return JsonConvert.DeserializeObject<TargetEvent>(s);
             default:
                 return e;
         }

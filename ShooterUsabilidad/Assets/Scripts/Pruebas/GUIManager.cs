@@ -57,7 +57,7 @@ public class GUIManager : MonoBehaviour
                 Time.timeScale = 0;
                 if (Input.GetMouseButtonDown(0))
                 {
-                    GameSessionManager.Instance.GoToNextScene();
+                   // GameSessionManager.Instance.GoToNextScene();
                 }
             }
         }

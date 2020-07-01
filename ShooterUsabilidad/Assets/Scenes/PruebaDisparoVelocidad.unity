@@ -876,7 +876,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a423a9a0de80504c84cc16e0b824fdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testDuration: 60
+  testDuration: 10
   targetLifeTime: 0.5
   missPenalty: 0.75
   maxKPS: 3.84
@@ -2070,6 +2070,7 @@ GameObject:
   - component: {fileID: 1164473606}
   - component: {fileID: 1164473605}
   - component: {fileID: 1164473604}
+  - component: {fileID: 1164473607}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2089,24 +2090,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77199654fa6e30f428afa671d4dc3510, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testName: Precision
-  proccesing: {fileID: 0}
+  testName: SpeedTest
+  proccesing: {fileID: 1164473607}
   eventOptions:
     values:
     - typeString: SESSION_START
       type: 0
-      activated: 0
+      activated: 1
     - typeString: SESSION_END
       type: 1
-      activated: 0
+      activated: 1
     - typeString: SHOOT
       type: 2
       activated: 1
     - typeString: AIM
       type: 3
-      activated: 1
-    - typeString: REFELX
+      activated: 0
+    - typeString: SPAWN
       type: 4
+      activated: 0
+    - typeString: CLICK
+      type: 5
+      activated: 0
+    - typeString: TARGET
+      type: 6
       activated: 1
 --- !u!114 &1164473605
 MonoBehaviour:
@@ -2143,6 +2150,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1164473607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164473603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19458ef5afb72e44ab2a6a1e1b73b9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 0
 --- !u!1 &1194782987
 GameObject:
   m_ObjectHideFlags: 0
@@ -3597,6 +3617,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5697810062888769349, guid: daba50240fd1a6e4aa56bf06c167dd84,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5697810062932031900, guid: daba50240fd1a6e4aa56bf06c167dd84,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3680,11 +3705,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5697810062888769349, guid: daba50240fd1a6e4aa56bf06c167dd84,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5697810062932031891, guid: daba50240fd1a6e4aa56bf06c167dd84,
         type: 3}

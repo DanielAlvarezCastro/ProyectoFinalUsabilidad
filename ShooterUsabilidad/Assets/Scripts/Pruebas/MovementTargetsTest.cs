@@ -79,6 +79,8 @@ public class MovementTargetsTest : MonoBehaviour
             else
             {
                 startEvent.endTestText();
+                Tracker.instance.TrackEvent(Tracker.instance.GenerateTrackerEvent(EventType.SESSION_END));
+                Tracker.getInstance().EndTest();
                 Debug.Log("La prueba ha terminado.");
             }
         }
@@ -95,7 +97,7 @@ public class MovementTargetsTest : MonoBehaviour
         //Saca la puntuación del objetivo destruido
         float targetScore = (Mathf.Log10(actualNumObj + 1) / Mathf.Log10(maxKills)) * 10;
         score += targetScore;
-
+        Tracker.instance.TrackEvent(new TargetEvent(TargetEventType.DESTROYED, targetScore));
         Debug.Log(targetScore + " " + score);
 
         //Suma 1 a las dianas golpeadas
@@ -110,6 +112,7 @@ public class MovementTargetsTest : MonoBehaviour
     //Registra el tiempo de vida de un objetivo se ha terminado 
     public void targetMissed(Target.TargetInfo info)
     {
+        Tracker.instance.TrackEvent(new TargetEvent(TargetEventType.DESPAWN,0));
         //Se coloca una nueva diana en una posicion random y se reinicia su tiempo de desaparicion
         newObjetive(false);
 
