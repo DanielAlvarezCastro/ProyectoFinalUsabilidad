@@ -1658,7 +1658,7 @@ MonoBehaviour:
   maxVert: 3
   minRandTime: 1
   maxRandTime: 2
-  testTime: 20
+  testTime: 30
   changeSceneTime: 3
   textStart: {fileID: 2078458353}
 --- !u!1 &944668961
