@@ -2595,8 +2595,8 @@ MonoBehaviour:
   score: 0
   midScore: 739.53
   maxScore: 1859.46
-  Precision: 30
-  Velocity: 70
+  Precision: 10
+  Velocity: 90
   tracking: 0
 --- !u!114 &1586480774
 MonoBehaviour:
@@ -2610,7 +2610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77199654fa6e30f428afa671d4dc3510, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testName: default
+  testName: SpeedTest
   proccesing: {fileID: 1586480773}
   eventOptions:
     values:
