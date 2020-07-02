@@ -2591,8 +2591,8 @@ MonoBehaviour:
   score: 0
   midScore: 459.06
   maxScore: 1106.79
-  Precision: 70
-  Velocity: 30
+  Precision: 50
+  Velocity: 50
   tracking: 0
 --- !u!114 &1359953745
 MonoBehaviour:
@@ -2606,7 +2606,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77199654fa6e30f428afa671d4dc3510, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testName: default
+  testName: ShootingTest
   proccesing: {fileID: 1359953744}
   eventOptions:
     values:
@@ -2618,7 +2618,7 @@ MonoBehaviour:
       activated: 1
     - typeString: SHOOT
       type: 2
-      activated: 0
+      activated: 1
     - typeString: AIM
       type: 3
       activated: 0
