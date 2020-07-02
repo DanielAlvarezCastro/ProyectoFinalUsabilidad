@@ -3170,6 +3170,10 @@ MonoBehaviour:
   CurrReaccion: {fileID: 88421316}
   CurrTracking: {fileID: 1771389350}
   CurrNota: {fileID: 1529570991}
+  pruebaPrecision: 30
+  pruebaApuntado: 30
+  pruebaReaccion: 15
+  pruebaTracking: 25
 --- !u!4 &1521478096
 Transform:
   m_ObjectHideFlags: 0
