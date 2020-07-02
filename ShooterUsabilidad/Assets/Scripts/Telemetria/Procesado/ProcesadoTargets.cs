@@ -83,9 +83,10 @@ public class ProcesadoTargets : IProcessing
 
         Debug.Log("Aim Time Score: " + aimTime);
 
-        float totalScore = aimTime * Velocity + precisionScore * Precision;
+        float totalScore = aimTime * (Velocity / 100.0f) + precisionScore * (Precision / 100.0f);
 
         Debug.Log("Total Score: " + totalScore);
+        GameObject.FindObjectOfType<GUIManager>().SetNota(totalScore);
 
         FindObjectOfType<AnalysisManager>().addStadistic(stat.precision, precisionScore);
         FindObjectOfType<AnalysisManager>().addStadistic(stat.aimTime, aimTime);
