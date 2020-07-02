@@ -34,6 +34,8 @@ public class ResultadosManager : MonoBehaviour
 
     [Header("Notas obtenidas")]
 
+    public bool useEditorNotes = false;
+
     [Range(0, maxPrecision)]
     public int notaPrecision = 0;
     [Range(0, maxApuntado)]
@@ -47,9 +49,10 @@ public class ResultadosManager : MonoBehaviour
 
     void Start()
     {
-        if (GameObject.FindObjectOfType<AnalysisManager>())
+        if (GameObject.FindObjectOfType<AnalysisManager>() && !useEditorNotes)
         {
             GameObject.FindObjectOfType<AnalysisManager>().ponderateStatsAndFinalScore();
+            //GameObject.FindObjectOfType<AnalysisManager>().testStats();
             am = GameObject.FindObjectOfType<AnalysisManager>();
         }
 
