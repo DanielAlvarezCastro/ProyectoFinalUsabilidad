@@ -88,11 +88,14 @@ public class ProcesadoTargets : IProcessing
         Debug.Log("Total Score: " + totalScore);
         GameObject.FindObjectOfType<GUIManager>().SetNota(totalScore);
 
-        FindObjectOfType<AnalysisManager>().addStadistic(stat.precision, precisionScore);
-        FindObjectOfType<AnalysisManager>().addStadistic(stat.aimTime, aimTime);
-        FindObjectOfType<AnalysisManager>().addStadistic(stat.reactionTime, totalScore);
-        if(tracking)
-           FindObjectOfType<AnalysisManager>().addStadistic(stat.tracking, totalScore);
+        if (GameObject.FindObjectOfType<GameSessionManager>() != null && GameSessionManager.Instance.GetCompleteTest())
+        {
+            FindObjectOfType<AnalysisManager>().addStadistic(stat.precision, precisionScore);
+            FindObjectOfType<AnalysisManager>().addStadistic(stat.aimTime, aimTime);
+            FindObjectOfType<AnalysisManager>().addStadistic(stat.reactionTime, totalScore);
+            if (tracking)
+                FindObjectOfType<AnalysisManager>().addStadistic(stat.tracking, totalScore);
+        }
 
     }
 }

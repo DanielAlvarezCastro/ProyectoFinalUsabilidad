@@ -118,59 +118,87 @@ public class AnalysisManager : MonoBehaviour
         generateFinalScore();
     }
 
+    public void testStats()
+    {
+        List<float> values1 = new List<float>();
+        List<float> values2 = new List<float>();
+        List<float> values3 = new List<float>();
+        List<float> values4 = new List<float>();
+        for(int i = 0; i < 3; i++)
+        {
+            values1.Add(50);
+        }
+        for (int i = 0; i < 3; i++)
+        {
+            values2.Add(50);
+        }
+        for (int i = 0; i < 4; i++)
+        {
+            values3.Add(50);
+        }
+        for (int i = 0; i < 2; i++)
+        {
+            values4.Add(50);
+        }
+        //Ponderar cada estadística
+        ponderateStat(stat.precision, values1.ToArray());
+        ponderateStat(stat.aimTime, values2.ToArray());
+        ponderateStat(stat.reactionTime, values3.ToArray());
+        ponderateStat(stat.tracking, values4.ToArray());
+
+        //Nota Final
+        generateFinalScore();
+    }
+
     void ponderateStat(stat category, float[] stats)
     {
         float media = 0;
         if (category == stat.precision)
         {
-            stats[0] *= precisionMovPond;
-            stats[1] *= precisionPrecPond;
-            stats[2] *= precisionVelPond;
+            stats[0] *= precisionMovPond/100;
+            stats[1] *= precisionPrecPond/100;
+            stats[2] *= precisionVelPond/100;
 
             for (int i = 0; i < stats.Length; i++)
             {
                 media += stats[i];
             }
-            media /= stats.Length;
             mediaPrecision = media;
         }
         else if(category == stat.aimTime)
         {
-            stats[0] *= aimTimeMovPond;
-            stats[1] *= aimTimePrecPond;
-            stats[2] *= aimTimeVelPond;
+            stats[0] *= aimTimeMovPond/100;
+            stats[1] *= aimTimePrecPond/100;
+            stats[2] *= aimTimeVelPond/100;
 
             for (int i = 0; i < stats.Length; i++)
             {
                 media += stats[i];
             }
-            media /= stats.Length;
             mediaAimTime = media;
         }
         else if (category == stat.tracking)
         {
-            stats[0] *= trackingTrackPond;
-            stats[1] *= trackingMovPond;
+            stats[0] *= trackingTrackPond/100;
+            stats[1] *= trackingMovPond/100;
 
             for (int i = 0; i < stats.Length; i++)
             {
                 media += stats[i];
             }
-            media /= stats.Length;
             mediaTracking = media;
         }
         else if (category == stat.reactionTime)
         {
-            stats[0] *= reactionTimeMovPond;
-            stats[1] *= reactionTimeReflexPond;
-            stats[2] *= reactionTimePrecPond;
-            stats[3] *= reactionTimeVelPond;
+            stats[0] *= reactionTimeMovPond/100;
+            stats[1] *= reactionTimeReflexPond/100;
+            stats[2] *= reactionTimePrecPond/100;
+            stats[3] *= reactionTimeVelPond/100;
 
             for (int i = 0; i < stats.Length; i++)
             {
                 media += stats[i];
             }
-            media /= stats.Length;
             mediaReactionTime = media;
         }
 
@@ -179,10 +207,10 @@ public class AnalysisManager : MonoBehaviour
     public void generateFinalScore()
     {
         notaFinal = 0;
-        notaFinal += mediaPrecision*precisionTotalPond;
-        notaFinal += mediaAimTime * aimTimeTotalPond;
-        notaFinal += mediaReactionTime * reactionTimeTotalPond;
-        notaFinal += mediaTracking * trackingTotalPond;
+        notaFinal += mediaPrecision*precisionTotalPond/100;
+        notaFinal += mediaAimTime * aimTimeTotalPond/100;
+        notaFinal += mediaReactionTime * reactionTimeTotalPond/100;
+        notaFinal += mediaTracking * trackingTotalPond/100;
 
 
         //Ya la tenemos

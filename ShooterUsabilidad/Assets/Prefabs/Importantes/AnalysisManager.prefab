@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7346532728823586259}
-  - component: {fileID: 3638390241015388438}
   - component: {fileID: 7623508568740826441}
   m_Layer: 0
   m_Name: AnalysisManager
@@ -32,20 +31,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3638390241015388438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7022909199816977922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb4b0a83daabfb845851b60877c156a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initWeapon: {fileID: 0}
-  totalWeapons: []
 --- !u!114 &7623508568740826441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,6 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0510e717c6112548976dc961b08514c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mediaPrecision: 0
+  mediaAimTime: 0
+  mediaReactionTime: 0
+  mediaTracking: 0
   trackingTrackPond: 85
   precisionMovPond: 25
   aimTimeMovPond: 35
