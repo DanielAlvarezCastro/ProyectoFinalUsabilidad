@@ -11,10 +11,10 @@ public class AnalysisManager : MonoBehaviour
     List<float> reactionTimeValues;
     List<float> trackingValues;
 
-    float mediaPrecision = 0;
-    float mediaAimTime = 0;
-    float mediaReactionTime = 0;
-    float mediaTracking = 0;
+    public float mediaPrecision = 0;
+    public float mediaAimTime = 0;
+    public float mediaReactionTime = 0;
+    public float mediaTracking = 0;
 
     float notaFinal = 0;
 
