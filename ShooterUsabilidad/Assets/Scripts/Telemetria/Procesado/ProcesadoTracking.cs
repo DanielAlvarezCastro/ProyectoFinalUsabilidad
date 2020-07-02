@@ -54,8 +54,8 @@ public class ProcesadoTracking : IProcessing
 
         //Analisis
         notaFinal = (float)((totalTimeIn.TotalMilliseconds / totalTime.TotalMilliseconds) * 100);
-
-        if(GameObject.FindObjectOfType<GameSessionManager>() != null && GameSessionManager.Instance.GetCompleteTest())
+        GameObject.FindObjectOfType<GUIManager>().SetNota(notaFinal);
+        if (GameObject.FindObjectOfType<GameSessionManager>() != null && GameSessionManager.Instance.GetCompleteTest())
             GameObject.FindObjectOfType<AnalysisManager>().addStadistic(stat.tracking, notaFinal);
     }
 }

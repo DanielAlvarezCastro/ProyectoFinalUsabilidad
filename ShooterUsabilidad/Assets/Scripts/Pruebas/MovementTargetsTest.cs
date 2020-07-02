@@ -78,6 +78,7 @@ public class MovementTargetsTest : MonoBehaviour
                 startEvent.endTestText();
                 Tracker.instance.TrackEvent(Tracker.instance.GenerateTrackerEvent(EventType.SESSION_END));
                 Tracker.getInstance().EndTest();
+                GameObject.FindObjectOfType<GUIManager>().EndTest();
                 Debug.Log("La prueba ha terminado.");
             }
         }
