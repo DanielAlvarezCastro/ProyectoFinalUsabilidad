@@ -17,6 +17,7 @@ public class GUIManager : MonoBehaviour
     public void SetNota(float num)
     {
         notaNum = num;
+        notaNum = (Mathf.Round(notaNum * 100f) / 100f);
         notaText.text = "Nota " + notaNum.ToString();
     }
     public void ShowStartPanel(bool b)
