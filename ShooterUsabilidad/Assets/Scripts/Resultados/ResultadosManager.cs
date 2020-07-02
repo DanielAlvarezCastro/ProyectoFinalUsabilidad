@@ -66,10 +66,10 @@ public class ResultadosManager : MonoBehaviour
     private void SetNotes()
     {
         //coger los numeritos y tal
-        notaPrecision = (int)(am.mediaPrecision / 100.0) * maxPrecision;
-        notaApuntado = (int)(am.mediaAimTime / 100.0) * maxApuntado;
-        notaReaccion = (int)(am.mediaReactionTime / 100.0) * maxReaccion;
-        notaTracking = (int)(am.mediaTracking / 100.0) * maxTracking;
+        notaPrecision = Math.Min(maxPrecision, (int)(am.mediaPrecision / 100.0) * maxPrecision);
+        notaApuntado = Math.Min(maxApuntado, (int)(am.mediaAimTime / 100.0) * maxApuntado);
+        notaReaccion = Math.Min(maxReaccion, (int)(am.mediaReactionTime / 100.0) * maxReaccion);
+        notaTracking = Math.Min(maxTracking,(int)(am.mediaTracking / 100.0) * maxTracking);
         //por ultimo llamamos al metodo que poner en marcha el resto
         SetTexts();
     }
