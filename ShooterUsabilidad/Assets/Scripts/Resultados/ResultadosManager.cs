@@ -47,8 +47,11 @@ public class ResultadosManager : MonoBehaviour
 
     void Start()
     {
-        GameObject.FindObjectOfType<AnalysisManager>().ponderateStatsAndFinalScore();
-        am = GameObject.FindObjectOfType<AnalysisManager>();
+        if (GameObject.FindObjectOfType<AnalysisManager>())
+        {
+            GameObject.FindObjectOfType<AnalysisManager>().ponderateStatsAndFinalScore();
+            am = GameObject.FindObjectOfType<AnalysisManager>();
+        }
 
         maxFinal = maxApuntado + maxPrecision + maxReaccion + maxTracking;
         if (maxFinal > 100)
@@ -65,12 +68,15 @@ public class ResultadosManager : MonoBehaviour
     //método para pillar los numeritos del AnalysisManager
     private void SetNotes()
     {
-        //coger los numeritos y tal
-        //los datos vienen en porcentajes, hay que dividirlos entre 100 y multiplicarlos por el maximo de puntos
-        notaPrecision = Math.Min(maxPrecision, (int)((am.mediaPrecision / 100.0) * (float)maxPrecision));
-        notaApuntado = Math.Min(maxApuntado, (int)((am.mediaAimTime / 100.0) * (float)maxApuntado));
-        notaReaccion = Math.Min(maxReaccion, (int)((am.mediaReactionTime / 100.0) * (float)maxReaccion));
-        notaTracking = Math.Min(maxTracking,(int)((am.mediaTracking / 100.0) * (float)maxTracking));
+        if (am != null)
+        {
+            //coger los numeritos y tal
+            //los datos vienen en porcentajes, hay que dividirlos entre 100 y multiplicarlos por el maximo de puntos
+            notaPrecision = Math.Min(maxPrecision, (int)((am.mediaPrecision / 100.0) * (float)maxPrecision));
+            notaApuntado = Math.Min(maxApuntado, (int)((am.mediaAimTime / 100.0) * (float)maxApuntado));
+            notaReaccion = Math.Min(maxReaccion, (int)((am.mediaReactionTime / 100.0) * (float)maxReaccion));
+            notaTracking = Math.Min(maxTracking, (int)((am.mediaTracking / 100.0) * (float)maxTracking));
+        }
         //por ultimo llamamos al metodo que poner en marcha el resto
         SetTexts();
     }
@@ -82,7 +88,7 @@ public class ResultadosManager : MonoBehaviour
         tiempoApuntadoText.text = "/" + maxApuntado;
         velReaccionText.text = "/" + maxReaccion;
         trackingText.text = "/" + maxTracking;
-        notaText.text = "/ 100";
+        notaText.text = "/" + maxFinal;
         //aseguramos que las barras estan vacias
         CurrPrecision.transform.localScale = new Vector3(0, 1, 1);
         CurrApuntado.transform.localScale = new Vector3(0, 1, 1);
