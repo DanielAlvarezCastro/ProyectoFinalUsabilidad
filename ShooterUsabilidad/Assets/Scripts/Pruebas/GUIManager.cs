@@ -17,6 +17,7 @@ public class GUIManager : MonoBehaviour
     public void SetNota(float num)
     {
         notaNum = num;
+        notaText.text = "Nota " + notaNum.ToString();
     }
     public void ShowStartPanel(bool b)
     {
@@ -57,7 +58,7 @@ public class GUIManager : MonoBehaviour
                 Time.timeScale = 0;
                 if (Input.GetMouseButtonDown(0))
                 {
-                   // GameSessionManager.Instance.GoToNextScene();
+                   GameSessionManager.Instance.GoToNextScene();
                 }
             }
         }

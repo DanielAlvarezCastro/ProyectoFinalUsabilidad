@@ -73,6 +73,7 @@ public class ProcesadoReflejos : IProcessing
             notaFinal = 50 - 50 * (notaFinal - midPunt*1000) / ((minPunt - midPunt)*1000);
         else notaFinal = 0;
         print(notaFinal);
+        GameObject.FindObjectOfType<GUIManager>().SetNota(notaFinal);
         if (GameObject.FindObjectOfType<GameSessionManager>() != null && GameSessionManager.Instance.GetCompleteTest())
             GameObject.FindObjectOfType<AnalysisManager>().addStadistic(stat.tracking, notaFinal);
     }
