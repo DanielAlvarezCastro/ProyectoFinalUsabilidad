@@ -99,9 +99,33 @@ public class ResultadosManager : MonoBehaviour
         CurrTracking.transform.localScale = new Vector3(0, 1, 1);
         CurrNota.transform.localScale = new Vector3(0, 1, 1);
         //logica de la carga de barras
-        StartCoroutine("setProgressBar");
+        //StartCoroutine("setProgressBar");
+        instantBars();
     }
 
+    void instantBars()
+    {
+        Vector3 aux = CurrPrecision.transform.localScale;
+        CurrPrecision.transform.localScale = aux + new Vector3((float)notaPrecision / maxPrecision, 0, 0);
+        precisionText.text = (int)(CurrPrecision.transform.localScale.x * (float)maxPrecision) + "/" + maxPrecision;
+
+        aux = CurrApuntado.transform.localScale;
+        CurrApuntado.transform.localScale = aux + new Vector3((float)notaApuntado / (float)maxApuntado, 0, 0);
+        tiempoApuntadoText.text = (int)(CurrApuntado.transform.localScale.x * (float)maxApuntado) + "/" + maxApuntado;
+
+        aux = CurrReaccion.transform.localScale;
+        CurrReaccion.transform.localScale = aux + new Vector3((float)notaReaccion / (float)maxReaccion, 0, 0);
+        velReaccionText.text = (int)(CurrReaccion.transform.localScale.x * (float)maxReaccion) + "/" + maxReaccion;
+
+        aux = CurrTracking.transform.localScale;
+        CurrTracking.transform.localScale = aux + new Vector3((float)notaTracking / (float)maxTracking, 0, 0);
+        trackingText.text = (int)(CurrTracking.transform.localScale.x * (float)maxTracking) + "/" + maxTracking;
+
+        int notaFinal = notaApuntado + notaPrecision + notaReaccion + notaTracking;
+        aux = CurrNota.transform.localScale;
+        CurrNota.transform.localScale = aux + new Vector3((float)notaFinal / (float)maxFinal, 0, 0);
+        notaText.text = (int)(CurrNota.transform.localScale.x * 100.0f) + "/" + maxFinal;
+    }
     //alarga las barras segun el score que se tenga
     public IEnumerator setProgressBar()
     {
