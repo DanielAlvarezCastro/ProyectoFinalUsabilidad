@@ -51,9 +51,9 @@ public class ResultadosManager : MonoBehaviour
     {
         if (GameObject.FindObjectOfType<AnalysisManager>() && !useEditorNotes)
         {
-            GameObject.FindObjectOfType<AnalysisManager>().ponderateStatsAndFinalScore();
+            AnalysisManager.instance.ponderateStatsAndFinalScore();
             //GameObject.FindObjectOfType<AnalysisManager>().testStats();
-            am = GameObject.FindObjectOfType<AnalysisManager>();
+            am = AnalysisManager.instance;
         }
 
         maxFinal = maxApuntado + maxPrecision + maxReaccion + maxTracking;

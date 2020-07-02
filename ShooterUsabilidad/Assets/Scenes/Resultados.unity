@@ -3170,7 +3170,7 @@ MonoBehaviour:
   CurrReaccion: {fileID: 88421316}
   CurrTracking: {fileID: 1771389350}
   CurrNota: {fileID: 1529570991}
-  useEditorNotes: 0
+  useEditorNotes: 1
   notaPrecision: 18
   notaApuntado: 20
   notaReaccion: 6
