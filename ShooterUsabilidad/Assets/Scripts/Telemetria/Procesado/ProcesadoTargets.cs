@@ -7,6 +7,11 @@ public class ProcesadoTargets : IProcessing
     public float midScore = 250;
     public float maxScore = 500;
 
+    public float Precision = 0;
+    public float Velocity = 0;
+
+    public bool tracking = false;
+
     public override void Process(string sessionName)
     {
         List<TrackerEvent> events = Tracker.instance.GetTestEvents(sessionName);
@@ -54,7 +59,8 @@ public class ProcesadoTargets : IProcessing
         float hit = ((float)(numAciertos) / (numDisparos));
         Debug.Log("Completion% " + completion * 100 + "%");
         Debug.Log("Hit% " + hit * 100 + "%");
-        Debug.Log("Precision score: " + hit * completion * 100 + "%");
+        float precisionScore = hit * completion * 100;
+        Debug.Log("Precision score: " + precisionScore + "%");
         /*
          * Diparas 1. Aciertas 1. Spawnean 10. -> 10%
          * Disparas 10. Aciertas 5. Spawnean 10 ->50%
@@ -77,7 +83,15 @@ public class ProcesadoTargets : IProcessing
 
         Debug.Log("Aim Time Score: " + aimTime);
 
-        FindObjectOfType<AnalysisManager>().addStadistic(stat.precision, hit * completion * 100);
-        FindObjectOfType<AnalysisManager>().addStadistic(stat.aimTime, totalPunt);
+        float totalScore = aimTime * Velocity + precisionScore * Precision;
+
+        Debug.Log("Total Score: " + totalScore);
+
+        FindObjectOfType<AnalysisManager>().addStadistic(stat.precision, precisionScore);
+        FindObjectOfType<AnalysisManager>().addStadistic(stat.aimTime, aimTime);
+        FindObjectOfType<AnalysisManager>().addStadistic(stat.reactionTime, totalScore);
+        if(tracking)
+           FindObjectOfType<AnalysisManager>().addStadistic(stat.tracking, totalScore);
+
     }
 }

@@ -2595,6 +2595,9 @@ MonoBehaviour:
   score: 0
   midScore: 739.53
   maxScore: 1859.46
+  Precision: 30
+  Velocity: 70
+  tracking: 0
 --- !u!114 &1586480774
 MonoBehaviour:
   m_ObjectHideFlags: 0
