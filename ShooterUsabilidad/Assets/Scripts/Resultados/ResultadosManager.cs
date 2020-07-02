@@ -48,6 +48,7 @@ public class ResultadosManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameObject.FindObjectOfType<AnalysisManager>().ponderateStatsAndFinalScore();
         if (maxApuntado + maxPrecision + maxReaccion + maxTracking > 100)
             print("oye que te pasas de 100 locuelo");
 

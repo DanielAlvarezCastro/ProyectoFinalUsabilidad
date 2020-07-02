@@ -72,6 +72,9 @@ public class AnalysisManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (GameObject.FindObjectOfType<AnalysisManager>() && GameObject.FindObjectOfType<AnalysisManager>().gameObject != gameObject) Destroy(gameObject);
+        else DontDestroyOnLoad(gameObject);
+
         precisionValues = new List<float>();
         aimTimeValues = new List<float>();
         reactionTimeValues = new List<float>();
@@ -103,7 +106,7 @@ public class AnalysisManager : MonoBehaviour
         }
     }
 
-    public void poderateStatsAndFinalScore()
+    public void ponderateStatsAndFinalScore()
     {
         //Ponderar cada estadística
         ponderateStat(stat.precision, precisionValues.ToArray());
@@ -117,13 +120,13 @@ public class AnalysisManager : MonoBehaviour
 
     void ponderateStat(stat category, float[] stats)
     {
-        if(category == stat.precision)
+        float media = 0;
+        if (category == stat.precision)
         {
             stats[0] *= precisionMovPond;
             stats[1] *= precisionPrecPond;
             stats[2] *= precisionVelPond;
 
-            float media = 0;
             for (int i = 0; i < stats.Length; i++)
             {
                 media += stats[i];
@@ -137,7 +140,6 @@ public class AnalysisManager : MonoBehaviour
             stats[1] *= aimTimePrecPond;
             stats[2] *= aimTimeVelPond;
 
-            float media = 0;
             for (int i = 0; i < stats.Length; i++)
             {
                 media += stats[i];
@@ -150,7 +152,6 @@ public class AnalysisManager : MonoBehaviour
             stats[0] *= trackingTrackPond;
             stats[1] *= trackingMovPond;
 
-            float media = 0;
             for (int i = 0; i < stats.Length; i++)
             {
                 media += stats[i];
@@ -165,7 +166,6 @@ public class AnalysisManager : MonoBehaviour
             stats[2] *= reactionTimePrecPond;
             stats[3] *= reactionTimeVelPond;
 
-            float media = 0;
             for (int i = 0; i < stats.Length; i++)
             {
                 media += stats[i];

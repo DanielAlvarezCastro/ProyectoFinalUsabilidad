@@ -1998,7 +1998,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 571768a3d99fbf941b587e52b5600388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testDuration: 60
+  testDuration: 40
   targetLifeTime: 2
   missPenalty: 0.7
   maxKPS: 2.53
