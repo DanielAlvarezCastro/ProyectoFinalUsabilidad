@@ -6,6 +6,7 @@ using UnityEngine;
 public enum stat {precision, aimTime, reactionTime, tracking};
 public class AnalysisManager : MonoBehaviour
 {
+    public static AnalysisManager instance = null;
     List<float> precisionValues;
     List<float> aimTimeValues;
     List<float> reactionTimeValues;
@@ -72,13 +73,18 @@ public class AnalysisManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (GameObject.FindObjectOfType<AnalysisManager>() && GameObject.FindObjectOfType<AnalysisManager>().gameObject != gameObject) Destroy(gameObject);
-        else DontDestroyOnLoad(gameObject);
+        if (AnalysisManager.instance != null)
+            Destroy(gameObject);
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
 
-        precisionValues = new List<float>();
-        aimTimeValues = new List<float>();
-        reactionTimeValues = new List<float>();
-        trackingValues = new List<float>();
+            precisionValues = new List<float>();
+            aimTimeValues = new List<float>();
+            reactionTimeValues = new List<float>();
+            trackingValues = new List<float>();
+        }
     }
 
     // Update is called once per frame
